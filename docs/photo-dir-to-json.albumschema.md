@@ -4,9 +4,9 @@
 
 ## albumSchema variable
 
-Metadata output by this library. It consists of passed-through input metadata conforming to `metadataSchema` combined with an array of `photoSchema` metadata for all photos inside the album directory.
+Metadata output by this library. It consists of passed-through input metadata conforming to [metadataSchema](./photo-dir-to-json.metadataschema.md) combined with an array of [photoSchema](./photo-dir-to-json.photoschema.md) metadata for all photos inside the album directory.
 
-Use this schema in your downstream application to easily load the JSON files, see the example under `albumSchemaType`<!-- -->.
+Use this schema in your downstream application to easily load the JSON files, see the example under [albumSchemaType](./photo-dir-to-json.albumschematype.md)<!-- -->.
 
 **Signature:**
 
@@ -70,7 +70,7 @@ albumSchema: z.ZodObject<{
 
 ## Remarks
 
-Although the schema extends `metadataSchema`<!-- -->, several of the fields are no longer optional and are written with defaults by the library:
+Although the schema extends [metadataSchema](./photo-dir-to-json.metadataschema.md)<!-- -->, several of the fields are no longer optional and are written with defaults by the library:
 
 1. `title` defaults to album on-disk folder name, case preserved (e.g. 'Album1')
 

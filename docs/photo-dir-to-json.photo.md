@@ -4,7 +4,7 @@
 
 ## Photo class
 
-Photo class represents a single photo file. It allows for easy fetch of photo metadata (see `photoSchema`<!-- -->).
+Photo class represents a single photo file. It allows for easy fetch of photo metadata (see [photoSchema](./photo-dir-to-json.photoschema.md)<!-- -->).
 
 **Signature:**
 
@@ -29,5 +29,5 @@ export declare class Photo
 
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
-|  [metadata()](./photo-dir-to-json.photo.metadata.md) |  | Asynchronously compute the <code>photoSchema</code> metadata for the image. The data is processed once and cached, so multiple executions will emit the same data. The date information is searched in the file in this order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified time. Metadata timestamps are processed according to ISO-8601 and use local time zone unless a timezone offset is included (like EXIF <code>OffsetTime</code>). |
+|  [metadata()](./photo-dir-to-json.photo.metadata.md) |  | Asynchronously compute the [photoSchema](./photo-dir-to-json.photoschema.md) metadata for the image. The data is processed once and cached, so multiple executions will emit the same data. The date information is searched in the file in this order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified time. Metadata timestamps are processed according to ISO-8601 and use local time zone unless a timezone offset is included (like EXIF <code>OffsetTime</code>). |
 

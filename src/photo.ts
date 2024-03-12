@@ -8,7 +8,7 @@ import { photoSchemaType } from './schema';
 
 /**
  * Photo class represents a single photo file. It allows for easy fetch of photo
- * metadata (see `photoSchema`).
+ * metadata (see {@link photoSchema}).
  * @public
  */
 export class Photo {
@@ -89,12 +89,13 @@ export class Photo {
     }
 
     /**
-     * Asynchronously compute the `photoSchema` metadata for the image. The data
-     * is processed once and cached, so multiple executions will emit the same
-     * data. The date information is searched in the file in this order: EXIF
-     * tags, IPTC tags, XMP tags, and falls back to on-disk modified time.
-     * Metadata timestamps are processed according to ISO-8601 and use local
-     * time zone unless a timezone offset is included (like EXIF `OffsetTime`).
+     * Asynchronously compute the {@link photoSchema} metadata for the image.
+     * The data is processed once and cached, so multiple executions will emit
+     * the same data. The date information is searched in the file in this
+     * order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified
+     * time. Metadata timestamps are processed according to ISO-8601 and use
+     * local time zone unless a timezone offset is included (like EXIF
+     * `OffsetTime`).
      * @returns a promise that, when resolved, provides photoSchema metadata for
      *  the image
      */

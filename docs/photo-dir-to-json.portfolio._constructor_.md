@@ -18,5 +18,5 @@ constructor(
 |  Parameter | Type | Description |
 |  --- | --- | --- |
 |  path | string | String path to the directory containing albums |
-|  opts | [PortfolioOptions](./photo-dir-to-json.portfoliooptions.md) | _(Optional)_ Any <code>AlbumOptions</code> properties specified here will be passed to each new Album class instance. |
+|  opts | [PortfolioOptions](./photo-dir-to-json.portfoliooptions.md) | _(Optional)_ Any [AlbumOptions](./photo-dir-to-json.albumoptions.md) properties specified here will be passed to each new Album class instance. |
 

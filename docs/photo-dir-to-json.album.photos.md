@@ -4,7 +4,7 @@
 
 ## Album.photos property
 
-List of Photo classes for all images found in the album path. Only files with extensions from `allowedExtensions` are processed, all others are ignored. Any ignored file extensions not specified in `skippedExtensions` prints a warning to the console notifying you that they were skipped.
+List of Photo classes for all images found in the album path. Only files with extensions from [\`allowedExtensions\` property](./photo-dir-to-json.albumoptions.md) are processed, all others are ignored. Any ignored file extensions not specified in [\`skippedExtensions\` property](./photo-dir-to-json.albumoptions.md) prints a warning to the console notifying you that they were skipped.
 
 **Signature:**
 

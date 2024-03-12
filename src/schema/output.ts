@@ -28,24 +28,25 @@ export const photoSchema = z.object({
 }).strict();
 
 /**
- * A TypeScript type of `photoSchema`.
+ * A TypeScript type of {@link photoSchema}.
  * @public
  */
 export type photoSchemaType = z.infer<typeof photoSchema>;
 
 /**
  * Metadata output by this library. It consists of passed-through input metadata
- * conforming to `metadataSchema` combined with an array of `photoSchema`
- * metadata for all photos inside the album directory.
+ * conforming to {@link metadataSchema} combined with an array of
+ * {@link photoSchema} metadata for all photos inside the album directory.
  *
  * Use this schema in your downstream application to easily load the JSON files,
- * see the example under `albumSchemaType`.
+ * see the example under {@link albumSchemaType}.
  *
  * @remarks
- * Although the schema extends `metadataSchema`, several of the fields are no
- * longer optional and are written with defaults by the library:
+ * Although the schema extends {@link metadataSchema}, several of the fields are
+ * no longer optional and are written with defaults by the library:
  *
- * 1. `title` defaults to album on-disk folder name, case preserved (e.g. 'Album1')
+ * 1. `title` defaults to album on-disk folder name, case preserved (e.g.
+ *    'Album1')
  *
  * 2. `slug` defaults to album on-disk folder name, lower cased (e.g. 'album1')
  *
@@ -85,7 +86,7 @@ export const albumSchema = metadataSchema.extend({
 }).strict();
 
 /**
- * A TypeScript type of `albumSchema`.
+ * A TypeScript type of {@link albumSchema}.
  * @example Bring type awareness to your application when loading a file
  *  that conforms to albumSchema.
  *

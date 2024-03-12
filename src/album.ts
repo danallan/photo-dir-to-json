@@ -37,10 +37,10 @@ export interface AlbumOptions {
 
 /**
  * The Album class represents a local directory of photos and an optional input
- * metadata JSON file that conforms to `metadataSchema`. The class collates
- * information about each photo inside of the album directory, combines it with
- * the (optional but recommended) input metadata and provides it all in a single
- * `albumSchema` metadata object.
+ * metadata JSON file that conforms to {@link metadataSchema}. The class
+ * collates information about each photo inside of the album directory, combines
+ * it with the (optional but recommended) input metadata and provides it all in
+ * a single {@link albumSchema} metadata object.
  * @public
  */
 export class Album {
@@ -101,7 +101,8 @@ export class Album {
     /**
      *
      * @param filename - full path to photo file on disk
-     * @returns true if filename extension is in allowedExtensions, false otherwise
+     * @returns true if filename extension is in allowedExtensions, false
+     *   otherwise
      */
     private _selectOnlyPhotos(filename: string) {
         const extension = extname(filename).toLowerCase();
@@ -114,9 +115,10 @@ export class Album {
 
     /**
      * List of Photo classes for all images found in the album path. Only files
-     * with extensions from `allowedExtensions` are processed, all others are
-     * ignored. Any ignored file extensions not specified in `skippedExtensions`
-     * prints a warning to the console notifying you that they were skipped.
+     * with extensions from {@link AlbumOptions | `allowedExtensions` property}
+     * are processed, all others are ignored. Any ignored file extensions not
+     * specified in {@link AlbumOptions | `skippedExtensions` property} prints a
+     * warning to the console notifying you that they were skipped.
      * @returns List of Photo instances for all valid photos in the album
      */
     get photos(): Photo[] {

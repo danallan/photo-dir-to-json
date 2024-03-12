@@ -4,7 +4,7 @@
 
 ## metadataSchemaType type
 
-A TypeScript type of `metadataSchema`<!-- -->.
+A TypeScript type of [metadataSchema](./photo-dir-to-json.metadataschema.md)<!-- -->.
 
 **Signature:**
 

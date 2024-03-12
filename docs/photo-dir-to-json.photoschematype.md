@@ -4,7 +4,7 @@
 
 ## photoSchemaType type
 
-A TypeScript type of `photoSchema`<!-- -->.
+A TypeScript type of [photoSchema](./photo-dir-to-json.photoschema.md)<!-- -->.
 
 **Signature:**
 

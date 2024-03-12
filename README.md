@@ -63,10 +63,10 @@ If you provide a JSON file, only `title` is required, all other fields are
 optional:
 ```
 {
-    "title": "My album",
+    "title": "My Album",
     "description": "An album of photos",
     "thumb": "IMG_1234.jpg", //preferred album thumb img filename
-    "slug": "/expected/url/to/MyAlbum",
+    "slug": "/expected/url/to/my-album",
     "unlisted": "false",
     "keywords": ["array of keywords", "landscapes", "art"]
 }
@@ -173,7 +173,6 @@ await portfolio.saveAllMetadata((album) => {
 
   return filepath;
 });
-
 ```
 
 # API

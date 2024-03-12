@@ -42,7 +42,7 @@ export const metadataSchema = z.object({
 }).strict();
 
 /**
- * A TypeScript type of `metadataSchema`.
+ * A TypeScript type of {@link metadataSchema}.
  * @example Bring type awareness to your application when writing a file
  *  that conforms to metadataSchema.
  *

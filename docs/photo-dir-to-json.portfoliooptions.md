@@ -4,7 +4,7 @@
 
 ## PortfolioOptions interface
 
-Optional Portfolio configuration. Include properties of `AlbumOptions` that you would like passed to each Album instance.
+Optional Portfolio configuration. Include properties of [AlbumOptions](./photo-dir-to-json.albumoptions.md) that you would like passed to each Album instance.
 
 **Signature:**
 

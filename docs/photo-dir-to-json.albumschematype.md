@@ -4,7 +4,7 @@
 
 ## albumSchemaType type
 
-A TypeScript type of `albumSchema`<!-- -->.
+A TypeScript type of [albumSchema](./photo-dir-to-json.albumschema.md)<!-- -->.
 
 **Signature:**
 
