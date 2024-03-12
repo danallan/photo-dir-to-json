@@ -155,6 +155,7 @@ files.
 ```ts
 import { Portfolio } from 'photo-dir-to-json';
 import { dirname, join } from 'path';
+import { mkdirSync } from 'fs';
 
 const path = '/Volumes/Photos/Portfolio';
 const output = '/srv/website/photo-data';
