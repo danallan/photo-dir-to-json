@@ -3,7 +3,8 @@
     "version": "1.0.0",
     "license": "MIT",
     "scripts": {
-        "build": "tsc && api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs"
+        "build": "tsc && api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",
+        "release": "release-it"
     },
     "dependencies": {
         "date-fns": "^3.4.0",
@@ -13,9 +14,11 @@
     "devDependencies": {
         "@microsoft/api-documenter": "^7.23.37",
         "@microsoft/api-extractor": "^7.42.3",
+        "@release-it/conventional-changelog": "^8.0.1",
         "@tsconfig/node20": "^20.1.2",
         "@types/node": "^20.11.24",
         "esrun": "^3.2.26",
+        "release-it": "^17.1.1",
         "typescript": "^5.3.3"
     },
     "main": "dist/index.js",

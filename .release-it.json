@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "after:bump": "yarn build"
+  },
+  "plugins": {
+    "@release-it/conventional-changelog": {
+      "preset": {
+        "name": "conventionalcommits"
+      },
+      "infile": "CHANGELOG.md"
+    }
+  },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  }
+}
