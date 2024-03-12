@@ -6,8 +6,8 @@ import {
     metadataSchema,
     metadataSchemaType
 } from './schema';
-import { existsSync, mkdirSync, readFileSync } from 'fs';
-import { join as pathJoin, extname, relative } from 'path';
+import { existsSync, readFileSync, writeFileSync } from 'fs';
+import { join as pathJoin, extname } from 'path';
 
 /**
  * Optional album configuration.
@@ -146,6 +146,16 @@ export class Album {
     }
 
     /**
+     * The `slug` field defined in the Album metadata, defaulting to the Album's
+     * on-disk directory name lower cased. For example, if the slug is not
+     * specified in the input metadata, the slug for an album located at
+     * `/Volume/Photos/Album1` becomes `album1`.
+     */
+    get slug(): string {
+        return this._metadata.slug || this.name.toLowerCase();
+    }
+
+    /**
      * The on-disk name of the album's directory. If the path is
      * `/Volume/Photos/Album1` the name is `Album1`.
      * @returns directory name of the album
@@ -156,11 +166,9 @@ export class Album {
 
     private _albumMetadata(photos: photoSchemaType[]): albumSchemaType {
         return {
-            title: this._metadata.title,
-            description: this._metadata.description,
-            keywords: this._metadata.keywords,
-            slug: this._metadata.slug || this.name.toLowerCase(),
-            thumb: this._metadata.thumb,
+            ...this._metadata,
+            title: this.title,
+            slug: this.slug,
             unlisted: this._metadata.unlisted === true,
             photos,
         }
@@ -180,4 +188,15 @@ export class Album {
         return this._albumMetadata(photos);
     }
 
+    /**
+     * Write the Album's generated metadata to a JSON file on disk. Please
+     * ensure the directories exist and the caller has permissions to write to
+     * the path. The file at the specified path will be overwritten if it
+     * exists.
+     * @param file - full file path of JSON file to write
+     */
+    public async saveMetadata(file: string) {
+        const out = await this.metadata();
+        writeFileSync(file, JSON.stringify(out));
+    }
 }

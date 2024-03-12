@@ -45,4 +45,34 @@ export class Portfolio {
             return new Album(d.path, opts);
         });
     }
+
+    /**
+     * Iterate over all Albums in the portfolio and write the computed metadata
+     * for each to disk.
+     * @param computePath - a function that accepts an Album parameter and
+     *   returns the full path where the album's JSON metadata will be written.
+     * @example Write all metadata to files based on album's directory name
+     *
+     * ```ts
+     * import { Portfolio } from 'photo-dir-to-json';
+     * import { join } from 'path';
+     *
+     * const path = '/Volumes/Photos/Portfolio';
+     * const output = '/srv/website/photo-data';
+     *
+     * const portfolio = new Portfolio(path, {
+     *   metadataFile: '_metadata.json',
+     * });
+     *
+     * await portfolio.saveAllMetadata((album) => {
+     *   return join(output, `${album.name.toLowerCase()}.json`);
+     * });
+     * ```
+     */
+    public async saveAllMetadata(computePath: (a: Album) => string) {
+        for (const album of this.albums) {
+            const path = computePath(album);
+            await album.saveMetadata(path);
+        }
+    }
 }

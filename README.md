@@ -4,14 +4,14 @@ A collection of useful (to me, anyway) functions to emit structured JSON data
 from a portfolio of photos saved and organized in local directories.
 
 This is mainly intended for occasional processing of image directories during a
-publish step. It will process a folder containing a set of image files as an
-album and provide a single JSON object collecting metadata related to that album
-(like its description) and brief display-related metadata for the photos in the
-album (e.g., width, height, filename, date).
+publish step. It will process folders containing sets of image files and provide
+a JSON objects that collect metadata related to that album (like its
+description) and brief display-related metadata for the photos in the album
+(e.g., width, height, filename, date).
 
 This is not meant to be used directly in a Node-based server application.
-Instead, use this library as part of a publish process and ingest the
-emitted JSON file in your server or static web page builder.
+Instead, use this library as part of a publish process and ingest the emitted
+JSON file in your server or static web page builder.
 
 # Installation
 
@@ -74,7 +74,7 @@ optional:
 
 # Examples
 
-## Load a portfolio, fetch one album's metadata
+## Load a portfolio, save one album's metadata
 
 ```ts
 import { Portfolio } from 'photo-dir-to-json';
@@ -84,7 +84,8 @@ const portfolio = new Portfolio(path, {
     metadataFile: '_metadata.json',
 });
 
-const firstOutput = await portfolio.albums[0].metadata();
+const outputJSON = '/srv/website/photo-data/album.json';
+await portfolio.albums[0].saveMetadata(outputJSON);
 ```
 
 If you specify a `metadataFile`, it must be inside
@@ -153,6 +154,7 @@ files.
 
 ```ts
 import { Portfolio } from 'photo-dir-to-json';
+import { dirname, join } from 'path';
 
 const path = '/Volumes/Photos/Portfolio';
 const output = '/srv/website/photo-data';
@@ -161,12 +163,15 @@ const portfolio = new Portfolio(path, {
     metadataFile: '_metadata.json',
 });
 
-for (const album of portfolio.albums) {
-  const albumData = await album.metadata();
-  const jsonFile = `${album.name}.json`;
-  const jsonPath = pathJoin(output, jsonFile);
-  writeFileSync(jsonPath, JSON.stringify(albumData));
-}
+await portfolio.saveAllMetadata((album) => {
+  const filepath = join(output, `${album.slug}.json`);
+
+  // create subdirectories in the output dir for slugs that
+  // contain the path separator '/'
+  mkdirSync(dirname(filepath), { recursive: true });
+
+  return filepath;
+});
 
 ```
 

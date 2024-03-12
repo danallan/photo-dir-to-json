@@ -25,3 +25,9 @@ export declare class Portfolio
 |  [albums](./photo-dir-to-json.portfolio.albums.md) | <code>readonly</code> | [Album](./photo-dir-to-json.album.md)<!-- -->\[\] | List of Album instances for each subdirectory of the Portfolio path. |
 |  [path](./photo-dir-to-json.portfolio.path.md) | <code>readonly</code> | string | String path to the Portfolio directory |
 
+## Methods
+
+|  Method | Modifiers | Description |
+|  --- | --- | --- |
+|  [saveAllMetadata(computePath)](./photo-dir-to-json.portfolio.saveallmetadata.md) |  | Iterate over all Albums in the portfolio and write the computed metadata for each to disk. |
+
