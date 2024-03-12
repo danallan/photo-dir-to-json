@@ -22,20 +22,20 @@ albumSchema: z.ZodObject<{
         filename: z.ZodString;
         date: z.ZodString;
         landscape: z.ZodBoolean;
-        w: z.ZodNumber;
-        h: z.ZodNumber;
+        width: z.ZodNumber;
+        height: z.ZodNumber;
     }, "strict", z.ZodTypeAny, {
         filename: string;
         date: string;
         landscape: boolean;
-        w: number;
-        h: number;
+        width: number;
+        height: number;
     }, {
         filename: string;
         date: string;
         landscape: boolean;
-        w: number;
-        h: number;
+        width: number;
+        height: number;
     }>, "many">;
 }, "strict", z.ZodTypeAny, {
     title: string;
@@ -45,8 +45,8 @@ albumSchema: z.ZodObject<{
         filename: string;
         date: string;
         landscape: boolean;
-        w: number;
-        h: number;
+        width: number;
+        height: number;
     }[];
     description?: string | undefined;
     thumb?: string | undefined;
@@ -59,8 +59,8 @@ albumSchema: z.ZodObject<{
         filename: string;
         date: string;
         landscape: boolean;
-        w: number;
-        h: number;
+        width: number;
+        height: number;
     }[];
     description?: string | undefined;
     thumb?: string | undefined;
@@ -92,16 +92,16 @@ Sample output JSON file
   "keywords": ["array of keywords", "landscapes", "art"],
   "photos": [{
     "filename": "IMG_2851.jpg",
-    "date": "Thu Jan 07 2010 09:52:59 GMT-0800 (Pacific Standard Time)",
-    "w": 1064,
-    "h": 1600,
+    "date": "2009-12-09T00:33:19.000Z",
+    "width": 1064,
+    "height": 1600,
     "landscape": false
   },
   {
     "filename": "IMG_2944.jpg",
-    "date":"Thu Jan 07 2010 19:10:00 GMT-0800 (Pacific Standard Time)",
-    "w": 1600,
-    "h": 1064,
+    "date": "2009-12-09T00:36:57.000Z",
+    "width": 1600,
+    "height": 1064,
     "landscape": true
   }]
 }

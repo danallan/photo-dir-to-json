@@ -4,7 +4,7 @@
 
 ## Album class
 
-The Album class represents a local directory of photos and an optional input metadata JSON file that conforms to `metadataSchema`<!-- -->. The class collates information about each photo inside of the album directory, combines it with the (optional but recommended) input metadata and provides it all in a single `albumSchema` metadata object. Additionally, the class provides a resize method to easily resize all photos in the album and save them to another directory.
+The Album class represents a local directory of photos and an optional input metadata JSON file that conforms to `metadataSchema`<!-- -->. The class collates information about each photo inside of the album directory, combines it with the (optional but recommended) input metadata and provides it all in a single `albumSchema` metadata object.
 
 **Signature:**
 
@@ -32,5 +32,4 @@ export declare class Album
 |  Method | Modifiers | Description |
 |  --- | --- | --- |
 |  [metadata()](./photo-dir-to-json.album.metadata.md) |  | Returns the full metadata for the album including all photos inside. |
-|  [resizePhotos(params)](./photo-dir-to-json.album.resizephotos.md) |  | <p>Resize all photos of the album to a specified size and to a specified location. This method makes a best-effort attempt to verify the path provided for the resize is different from the directory containing the originals.</p><p>\*\*WARNING\*\*: if a file with the same name as the original image already exists at the specified path it will be overwritten.</p> |
 

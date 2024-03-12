@@ -1,5 +1,5 @@
 import { Directory } from './fs';
-import { Photo, PhotoResizeParams } from './photo';
+import { Photo } from './photo';
 import {
     albumSchemaType,
     photoSchemaType,
@@ -24,7 +24,8 @@ export interface AlbumOptions {
       */
     metadataFile?: string,
     /** A list of case-insensitive extensions to match photo files inside the
-      * album. The files must be supported by the sharp image processing
+      * album. The files must be supported by
+      * {@link https://github.com/mattiasw/ExifReader#readme | ExifReader}
       * library. Default: ['jpg', 'jpeg', 'png', 'webp']
       */
     allowedExtensions?: string[],
@@ -39,9 +40,7 @@ export interface AlbumOptions {
  * metadata JSON file that conforms to `metadataSchema`. The class collates
  * information about each photo inside of the album directory, combines it with
  * the (optional but recommended) input metadata and provides it all in a single
- * `albumSchema` metadata object. Additionally, the class provides a resize
- * method to easily resize all photos in the album and save them to another
- * directory.
+ * `albumSchema` metadata object.
  * @public
  */
 export class Album {
@@ -181,36 +180,4 @@ export class Album {
         return this._albumMetadata(photos);
     }
 
-    /**
-     * Resize all photos of the album to a specified size and to a specified
-     * location. This method makes a best-effort attempt to verify the path
-     * provided for the resize is different from the directory containing the
-     * originals.
-     *
-     * **WARNING**: if a file with the same name as the original image already
-     * exists at the specified path it will be overwritten.
-     * @param params - Specify the resize parameters in `PhotoResizeParams`
-     *   type, including the directory to save the resized photo, the pixel
-     *   bounds, and save quality.
-     * @returns The full album metadata including the resized photos.
-     * @public
-     */
-    public async resizePhotos(params: PhotoResizeParams): Promise<albumSchemaType> {
-        params.dir = pathJoin(params.dir, this.name);
-
-        if (relative(params.dir, this.path) === '') {
-            throw new Error(`Cannot output resized photos to the same `+
-                            `directory as source files`);
-        }
-
-        if (!existsSync(params.dir)) {
-            mkdirSync(params.dir, { recursive: true });
-        }
-
-        const photos: photoSchemaType[] = [];
-        for (const photo of this.photos) {
-            photos.push(await photo.resize(params));
-        }
-        return this._albumMetadata(photos);
-    }
 }

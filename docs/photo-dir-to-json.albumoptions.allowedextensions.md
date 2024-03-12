@@ -4,7 +4,7 @@
 
 ## AlbumOptions.allowedExtensions property
 
-A list of case-insensitive extensions to match photo files inside the album. The files must be supported by the sharp image processing library. Default: \['jpg', 'jpeg', 'png', 'webp'\]
+A list of case-insensitive extensions to match photo files inside the album. The files must be supported by [ExifReader](https://github.com/mattiasw/ExifReader#readme) library. Default: \['jpg', 'jpeg', 'png', 'webp'\]
 
 **Signature:**
 

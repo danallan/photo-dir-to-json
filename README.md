@@ -1,16 +1,13 @@
 # photo-dir-to-json
 
-A collection of useful (to me, anyway) functions to emit structured JSON
-data and resize photos from a portfolio of photos saved and organized in local
-directories.
+A collection of useful (to me, anyway) functions to emit structured JSON data
+from a portfolio of photos saved and organized in local directories.
 
-This is mainly intended for occasional processing of image directories during a publish step. As an intermediate publish tool it includes two major features:
-
-1. Emit a single JSON object per album collecting metadata related to that
-   album (like its description) and brief display-related metadata for
-   the photos in the album (e.g., width, height, filename, age).
-2. Resize all of the photos in an album into another directory, so you don't
-   need to publish full-size images to the internet.
+This is mainly intended for occasional processing of image directories during a
+publish step. It will process a folder containing a set of image files as an
+album and provide a single JSON object collecting metadata related to that album
+(like its description) and brief display-related metadata for the photos in the
+album (e.g., width, height, filename, date).
 
 This is not meant to be used directly in a Node-based server application.
 Instead, use this library as part of a publish process and ingest the
@@ -26,7 +23,32 @@ or with Yarn:
 
 `yarn add photo-dir-to-json`
 
-# Input metadata
+# Directory structure
+
+All photos are expected to be JPEG, PNG, or WebP types by default with
+extensions `jpg`, `jpeg`, `png`, or `webp`. Additional image types are possible,
+limited by valid types that can be read by the [ExifReader
+library](https://github.com/mattiasw/ExifReader#readme).
+
+An album is just a directory that contains one or more photo files.
+
+A portfolio is a directory that contains one or more album directories.
+
+Sample directory structure:
+
+```
+Portfolio/
+  Album1/
+    _metadata.json
+    IMG_1234.jpg
+    IMG_1235.jpg
+  Album2/
+    _metadata.json
+    P7130000.jpg
+    P7130001.jpg
+```
+
+# Input album metadata
 
 If your album has any metadata, create a JSON file with the following format.
 All of this data is just passed through to the output metadata.
@@ -48,31 +70,6 @@ optional:
     "unlisted": "false",
     "keywords": ["array of keywords", "landscapes", "art"]
 }
-```
-
-# Directory structure
-
-All photos are expected to be JPEG, PNG, or WebP types by default with
-extensions `jpg`, `jpeg`, `png`, or `webp`. Additional image types are possible,
-limited by valid types that can be read by the [sharp
-library](https://sharp.pixelplumbing.com/).
-
-An album is just a directory that contains one or more photo files.
-
-A portfolio is a directory that contains one or more album directories.
-
-Sample directory structure:
-
-```
-Portfolio/
-  Album1/
-    _metadata.json
-    IMG_1234.jpg
-    IMG_1235.jpg
-  Album2/
-    _metadata.json
-    P7130000.jpg
-    P7130001.jpg
 ```
 
 # Examples
@@ -149,55 +146,28 @@ const album = new Album(albumPath, {
 });
 ```
 
-## Sample program
+## Save all metadata
 
-Load a portfolio, iterate over every album, resize images to a new directory,
-then write the final album metadata for resized images to a directory.
-
-The directory structure is as shown in 'Directory structure', above. The
-resized images will be saved to `/Volumes/Photos/Resized`, and all metadata
-files will be written to directory `/Volumes/Photos/Resized-metadata`, with
-each metadata JSON file matching the name of the album (e.g., `Album1.json`
-and `Album2.json`).
+Load a portfolio, iterate over every album and save each metadata into JSON
+files.
 
 ```ts
-import { Portfolio } from 'photo-dir-fun-ts';
-import { writeFileSync, existsSync, mkdirSync } from 'fs';
-import { join as pathJoin } from 'path';
+import { Portfolio } from 'photo-dir-to-json';
 
-const photosInput = '/Volumes/Photos/Portfolio';
-const photosOutput = '/Volumes/Photos/Resized';
-const metadataOutput = '/Volumes/Photos/Resized-metadata';
+const path = '/Volumes/Photos/Portfolio';
+const output = '/srv/website/photo-data';
 
-const portfolio = new Portfolio(photosInput, {
+const portfolio = new Portfolio(path, {
     metadataFile: '_metadata.json',
 });
 
-console.log(`Found ${portfolio.albums.length} albums in portfolio`);
-
-// prepare out resize and metadata output folders
-if (!existsSync(photosOutput)) {
-  mkdirSync(photosOutput);
-}
-if (!existsSync(metadataOutput)) {
-  mkdirSync(metadataOutput);
-}
-
 for (const album of portfolio.albums) {
-  // resize photos to fit inside a 1600px square, preserving
-  // aspect ratio, metadata, and a 90% quality
-  const newMetadata = await album.resizePhotos({
-    largeSideMax: 1600,
-    dir: photosOutput,
-    quality: 90,
-  });
-  console.log(`Album '${album.title}': resized ${album.photos.length} photos`);
-
-  // save metadata file to a JSON file based on the album's directory name
-  const jsonFile = `${album.name.toLowerCase()}.json`;
-  const jsonPath = pathJoin(metadataOutput, jsonFile);
-  writeFileSync(jsonPath, JSON.stringify(newMetadata));
+  const albumData = await album.metadata();
+  const jsonFile = `${album.name}.json`;
+  const jsonPath = pathJoin(output, jsonFile);
+  writeFileSync(jsonPath, JSON.stringify(albumData));
 }
+
 ```
 
 # API

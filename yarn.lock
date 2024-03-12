@@ -542,6 +542,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@xmldom/xmldom@npm:^0.8.10":
+  version: 0.8.10
+  resolution: "@xmldom/xmldom@npm:0.8.10"
+  checksum: 10c0/c7647c442502720182b0d65b17d45d2d95317c1c8c497626fe524bda79b4fb768a9aa4fae2da919f308e7abcff7d67c058b102a9d641097e9a57f0b80187851f
+  languageName: node
+  linkType: hard
+
 "abbrev@npm:^2.0.0":
   version: 2.0.0
   resolution: "abbrev@npm:2.0.0"
@@ -785,6 +792,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"date-fns@npm:^3.4.0":
+  version: 3.4.0
+  resolution: "date-fns@npm:3.4.0"
+  checksum: 10c0/e4395adcdf10b1784c6479b9d715ed9a1cb06c9d99b95607ad6db43b18371e22314d3e9e5509a378da1c5a6b34b313049bf82897b7f263f413e051f59e0ea5c2
+  languageName: node
+  linkType: hard
+
 "debug@npm:4, debug@npm:^4.3.4":
   version: 4.3.4
   resolution: "debug@npm:4.3.4"
@@ -945,6 +959,18 @@ __metadata:
   bin:
     esrun: bin.js
   checksum: 10c0/6e4d8fc6fc31744a0505956caa70619d021f85b4450d56346e7cbb56c647a8d8ea71a525ff518e0e051bcd52b05c545cab27499894531aceb4bf61b72000f4a7
+  languageName: node
+  linkType: hard
+
+"exifreader@npm:^4.21.1":
+  version: 4.21.1
+  resolution: "exifreader@npm:4.21.1"
+  dependencies:
+    "@xmldom/xmldom": "npm:^0.8.10"
+  dependenciesMeta:
+    "@xmldom/xmldom":
+      optional: true
+  checksum: 10c0/41fe1554836e1d4c721c301c05caed25cd2a2034189a3a1b5d2d408415675ad701dcc30b116cb717f44a11be601b36b7ae2c13a0926092c15656cd3874680439
   languageName: node
   linkType: hard
 
@@ -1551,7 +1577,9 @@ __metadata:
     "@microsoft/api-extractor": "npm:^7.42.3"
     "@tsconfig/node20": "npm:^20.1.2"
     "@types/node": "npm:^20.11.24"
+    date-fns: "npm:^3.4.0"
     esrun: "npm:^3.2.26"
+    exifreader: "npm:^4.21.1"
     sharp: "npm:^0.33.2"
     typescript: "npm:^5.3.3"
     zod: "npm:^3.22.4"

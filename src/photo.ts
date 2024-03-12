@@ -1,4 +1,5 @@
-import sharp from 'sharp';
+import exifreader from 'exifreader';
+import { parse as parseDate, parseISO } from 'date-fns';
 import { statSync } from 'fs';
 import { join as pathJoin } from 'path';
 
@@ -6,47 +7,13 @@ import { Directory } from './fs';
 import { photoSchemaType } from './schema';
 
 /**
- * Configuration needed when performing a photo resize.
- * @public
- */
-export interface PhotoResizeParams {
-    /**
-     * The directory to save the resized photo. The photo is saved with the same
-     * filename. **WARNING:** existing files are overwritten.
-     */
-    dir: string,
-    /**
-     * The maximum size in pixels for the *longest* side of the photo. The
-     * height for portrait photos and width for landscape. Aspect ratio is
-     * always preserved.
-     */
-    largeSideMax: number,
-    /**
-     * The maximum size in pixels for the *shortest* side of the photo. The
-     * width for portrait photos and height for landscape. Aspect ratio is
-     * always preserved.
-     *
-     * If this is not defined, the photo is guaranteed to fit inside a square
-     * with sides `largeSideMax`. If defined, it must be a value smaller than
-     * `largeSideMax` to have any effect. The resulting photo will fit within
-     * the size of the rectangle specified by the large and small side maximums.
-     */
-    smallSideMax?: number,
-    /**
-     * Integer from 1-100, default 80. Defines the output quality of saved
-     * images for JPG, WebP, and TIFF file types.
-     */
-    quality?: number,
-}
-
-/**
  * Photo class represents a single photo file. It allows for easy fetch of photo
- * metadata (see `photoSchema`) and resizing.
+ * metadata (see `photoSchema`).
  * @public
  */
 export class Photo {
     private _directory: Directory;
-    private _sharpData: sharp.Metadata|null = null;
+    private _metadata: photoSchemaType|null = null;
 
     /**
      * Construct a new instance of the Photo class
@@ -69,79 +36,85 @@ export class Photo {
         return pathJoin(this._directory.path, this.name);
     }
 
+    private _getDateTime(tags: exifreader.Tags): Date {
+        let date: Date;
+
+        const exifDateTag = tags['DateTime'];
+        const altDateTag = (
+            tags['DateCreated'] || // IPTC
+            tags['CreateDate'] // XMP
+        );
+
+        if (exifDateTag) {
+            // typical EXIF date format with an added two-digit
+            // sub-second precision which we add below
+            let exifFormat = 'yyyy:MM:dd HH:mm:ss.SS';
+
+            // typically 2 digits of sub-second precision, if available
+            const subsec = (tags['SubSecTime']?.description ?? '00').substring(0, 2);
+            let timestamp = `${exifDateTag.description}.${subsec}`;
+
+            // add timezone offset if available. typical format: "±HH:MM"
+            if (tags['OffsetTime']) {
+                timestamp = `${timestamp}${tags['OffsetTime']}`;
+                exifFormat = `${exifFormat}X`;
+            }
+
+            date = parseDate(timestamp, exifFormat, new Date());
+        }
+        else if (altDateTag) {
+            // these tags come in a modified ISO-8601 form already
+            date = parseISO(altDateTag.description);
+        }
+        else {
+            console.warn(`WARNING: Cannot read DateTime from metadata in ` +
+                        `${this.path}, using last modified time instead`);
+            // alias mtime from stat object as date
+            ({ mtime: date } = statSync(this.path));
+        }
+        return date;
+    }
+
+    private _getDimensions(tags: exifreader.Tags): {width: number, height: number} {
+        let width: number, height: number;
+        try {
+            // with a space reads from file headers, no space is from metadata
+            width = (tags['Image Width'] || tags['ImageWidth'])!.value;
+            height = (tags['Image Height'] || tags['ImageHeight'])!.value;
+        }
+        catch (e) {
+            throw new Error(`Cannot determine size of ${this.path}:\n${e}`);
+        }
+        return { width, height };
+    }
+
     /**
-     * Asynchronously compute the `photoSchema` metadata for the image.
-     * The data is not cached, multiple executions re-computes the metadata.
-     * Relies on the sharp library to interpret the image width and height.
+     * Asynchronously compute the `photoSchema` metadata for the image. The data
+     * is processed once and cached, so multiple executions will emit the same
+     * data. The date information is searched in the file in this order: EXIF
+     * tags, IPTC tags, XMP tags, and falls back to on-disk modified time.
+     * Metadata timestamps are processed according to ISO-8601 and use local
+     * time zone unless a timezone offset is included (like EXIF `OffsetTime`).
      * @returns a promise that, when resolved, provides photoSchema metadata for
      *  the image
      */
     public async metadata(): Promise<photoSchemaType> {
-        // allow an exception to propagate if image can't be read
-        if (!this._sharpData)
-            this._sharpData = await sharp(this.path).metadata();
+        if (this._metadata)
+            return this._metadata;
 
-        // fetch modified time
-        const { mtime } = statSync(this.path);
+        const tags = await exifreader.load(this.path);
 
-        const w = this._sharpData.width || 0;
-        const h = this._sharpData.height || 0;
+        const { width, height } = this._getDimensions(tags);
 
-        return {
+        this._metadata = {
             filename: this.name,
-            date: mtime.toString(),
-            w,
-            h,
-            landscape: w > h,
+            date: this._getDateTime(tags).toISOString(),
+            width,
+            height,
+            landscape: width > height,
         };
-    }
 
-    /**
-     * Asynchronously resize the photo (preserving EXIF, ICC, XMP, and IPTC
-     * metadata, if any) and save the resulting photo to the specified path and
-     * return the new photo's `photoSchema` metadata. The photo is resized to
-     * fit within the specified dimensions without any cropping or padding: its
-     * aspect ratio is preserved no matter the values provided.
-     *
-     * **WARNING**: if a file with the same name as the original image already
-     * exists at the specified path it will be overwritten.
-     * @param params - Specify the resize parameters in `PhotoResizeParams`
-     *   type, including the directory to save the resized photo, the pixel
-     *   bounds, and save quality.
-     * @returns photoSchema metadata for the newly resized image
-     */
-    public async resize(params: PhotoResizeParams): Promise<photoSchemaType> {
-        const metadata = await this.metadata();
-
-        const short = params.smallSideMax ?? params.largeSideMax;
-
-        const width = metadata.landscape ? params.largeSideMax : short;
-        const height = metadata.landscape? short : params.largeSideMax;
-
-        if (width >= metadata.w && height >= metadata.h)
-            console.error(`WARNING: ${this.name} is being resized to fit in` +
-                `${width} x ${height}, which is greater than or equal to `+
-                `its current dimension ${metadata.w} by ${metadata.h}`
-            );
-
-        const quality = params.quality ?? 80;
-
-        const output = await sharp(this.path)
-            .keepMetadata()
-            .resize(width, height, {
-                withoutEnlargement: true,
-                fit: 'inside'
-            })
-            .jpeg({ quality, force: false })
-            .webp({ quality, force: false })
-            .tiff({ quality, force: false})
-            .toFile(pathJoin(params.dir, this.name));
-
-        return {
-            ...metadata,
-            w: output.width,
-            h: output.height
-        };
+        return this._metadata;
     }
 
 }

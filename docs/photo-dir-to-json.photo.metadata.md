@@ -4,7 +4,7 @@
 
 ## Photo.metadata() method
 
-Asynchronously compute the `photoSchema` metadata for the image. The data is not cached, multiple executions re-computes the metadata. Relies on the sharp library to interpret the image width and height.
+Asynchronously compute the `photoSchema` metadata for the image. The data is processed once and cached, so multiple executions will emit the same data. The date information is searched in the file in this order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified time. Metadata timestamps are processed according to ISO-8601 and use local time zone unless a timezone offset is included (like EXIF `OffsetTime`<!-- -->).
 
 **Signature:**
 

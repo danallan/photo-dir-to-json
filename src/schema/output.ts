@@ -11,9 +11,9 @@ import { metadataSchema } from './metadata';
  * ```json
  * {
  *   "filename": "IMG_2851.jpg", // on-disk file name
- *   "date": "Thu Jan 07 2010 09:52:59 GMT-0800 (Pacific Standard Time)", // modified time
- *   "w": 1064, // photo width in pixels
- *   "h": 1600, // photo height in pixels
+ *   "date": "2009-12-09T00:33:19.000Z", // ISO-8601 format
+ *   "width": 1064, // photo width in pixels
+ *   "height": 1600, // photo height in pixels
  *   "landscape": false // true if width is greater than height
  * }
  * ```
@@ -23,8 +23,8 @@ export const photoSchema = z.object({
     filename: z.string(),
     date: z.string(),
     landscape: z.boolean(),
-    w: z.number(),
-    h: z.number(),
+    width: z.number(),
+    height: z.number(),
 }).strict();
 
 /**
@@ -62,16 +62,16 @@ export type photoSchemaType = z.infer<typeof photoSchema>;
  *   "keywords": ["array of keywords", "landscapes", "art"],
  *   "photos": [{
  *     "filename": "IMG_2851.jpg",
- *     "date": "Thu Jan 07 2010 09:52:59 GMT-0800 (Pacific Standard Time)",
- *     "w": 1064,
- *     "h": 1600,
+ *     "date": "2009-12-09T00:33:19.000Z",
+ *     "width": 1064,
+ *     "height": 1600,
  *     "landscape": false
  *   },
  *   {
  *     "filename": "IMG_2944.jpg",
- *     "date":"Thu Jan 07 2010 19:10:00 GMT-0800 (Pacific Standard Time)",
- *     "w": 1600,
- *     "h": 1064,
+ *     "date": "2009-12-09T00:36:57.000Z",
+ *     "width": 1600,
+ *     "height": 1064,
  *     "landscape": true
  *   }]
  * }

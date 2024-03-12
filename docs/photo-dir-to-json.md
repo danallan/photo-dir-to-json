@@ -8,8 +8,8 @@
 
 |  Class | Description |
 |  --- | --- |
-|  [Album](./photo-dir-to-json.album.md) | The Album class represents a local directory of photos and an optional input metadata JSON file that conforms to <code>metadataSchema</code>. The class collates information about each photo inside of the album directory, combines it with the (optional but recommended) input metadata and provides it all in a single <code>albumSchema</code> metadata object. Additionally, the class provides a resize method to easily resize all photos in the album and save them to another directory. |
-|  [Photo](./photo-dir-to-json.photo.md) | Photo class represents a single photo file. It allows for easy fetch of photo metadata (see <code>photoSchema</code>) and resizing. |
+|  [Album](./photo-dir-to-json.album.md) | The Album class represents a local directory of photos and an optional input metadata JSON file that conforms to <code>metadataSchema</code>. The class collates information about each photo inside of the album directory, combines it with the (optional but recommended) input metadata and provides it all in a single <code>albumSchema</code> metadata object. |
+|  [Photo](./photo-dir-to-json.photo.md) | Photo class represents a single photo file. It allows for easy fetch of photo metadata (see <code>photoSchema</code>). |
 |  [Portfolio](./photo-dir-to-json.portfolio.md) | Portfolio is a convenience class that automatically creates Album class instances for all subdirectories of a provided path. |
 
 ## Interfaces
@@ -17,7 +17,6 @@
 |  Interface | Description |
 |  --- | --- |
 |  [AlbumOptions](./photo-dir-to-json.albumoptions.md) | Optional album configuration. |
-|  [PhotoResizeParams](./photo-dir-to-json.photoresizeparams.md) | Configuration needed when performing a photo resize. |
 |  [PortfolioOptions](./photo-dir-to-json.portfoliooptions.md) | Optional Portfolio configuration. Include properties of <code>AlbumOptions</code> that you would like passed to each Album instance. |
 
 ## Variables

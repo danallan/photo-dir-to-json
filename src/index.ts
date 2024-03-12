@@ -1,6 +1,6 @@
 export { Portfolio, PortfolioOptions } from './portfolio';
 export { Album, AlbumOptions } from './album';
-export { Photo, PhotoResizeParams } from './photo';
+export { Photo } from './photo';
 export { metadataSchema, albumSchema, photoSchema } from './schema';
 export type {
     metadataSchemaType,

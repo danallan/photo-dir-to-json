@@ -6,7 +6,8 @@
         "build": "tsc && api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs"
     },
     "dependencies": {
-        "sharp": "^0.33.2",
+        "date-fns": "^3.4.0",
+        "exifreader": "^4.21.1",
         "zod": "^3.22.4"
     },
     "devDependencies": {

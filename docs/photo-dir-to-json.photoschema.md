@@ -15,20 +15,20 @@ photoSchema: z.ZodObject<{
     filename: z.ZodString;
     date: z.ZodString;
     landscape: z.ZodBoolean;
-    w: z.ZodNumber;
-    h: z.ZodNumber;
+    width: z.ZodNumber;
+    height: z.ZodNumber;
 }, "strict", z.ZodTypeAny, {
     filename: string;
     date: string;
     landscape: boolean;
-    w: number;
-    h: number;
+    width: number;
+    height: number;
 }, {
     filename: string;
     date: string;
     landscape: boolean;
-    w: number;
-    h: number;
+    width: number;
+    height: number;
 }>
 ```
 
@@ -39,9 +39,9 @@ Sample metadata corresponding to this schema
 ```json
 {
   "filename": "IMG_2851.jpg", // on-disk file name
-  "date": "Thu Jan 07 2010 09:52:59 GMT-0800 (Pacific Standard Time)", // modified time
-  "w": 1064, // photo width in pixels
-  "h": 1600, // photo height in pixels
+  "date": "2009-12-09T00:33:19.000Z", // ISO-8601 format
+  "width": 1064, // photo width in pixels
+  "height": 1600, // photo height in pixels
   "landscape": false // true if width is greater than height
 }
 ```
