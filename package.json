@@ -1,6 +1,6 @@
 {
     "name": "photo-dir-to-json",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "license": "MIT",
     "scripts": {
         "build": "tsc && api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",

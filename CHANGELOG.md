@@ -1,5 +1,12 @@
 
 
+## [1.0.1](https://github.com/danallan/photo-dir-to-json/compare/1.0.0...1.0.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* Align all photo date detection to create date ([cd0696b](https://github.com/danallan/photo-dir-to-json/commit/cd0696b0c8f4a495834f00db00f1aa3fd5832248))
+
 ## 1.0.0 (2024-03-12)
 
 
