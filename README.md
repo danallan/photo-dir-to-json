@@ -175,6 +175,47 @@ await portfolio.saveAllMetadata((album) => {
 });
 ```
 
+## Use saved album data in another application
+
+### Load the JSON files with validation and type safety
+
+If you load the saved JSON files in another application, like a photo publishing
+script, you can do so safely. The `albumSchema` import allows you to parse the
+JSON file with schema validation, while `albumSchemaType` brings TypeScript type
+support to the object.
+
+```ts
+import { albumSchemaType, albumSchema } from 'photo-dir-to-json';
+import { readFileSync } from 'fs';
+
+function loadAlbumMetadata(file: string): albumSchemaType {
+  const contents = readFileSync(file, 'utf8');
+  return albumSchema.parse(JSON.parse(contents));
+}
+```
+
+### As data collection in Astro
+
+JSON files can be used in [Astro](https://astro.build/) as a [Data
+Collection](https://docs.astro.build/en/guides/content-collections/) (a content
+collection of type `data`).
+
+Save the JSON files in your Astro project to `src/content/photos` and
+define the collection in `src/config.ts` file in the following way:
+
+```ts
+// Astro project src/config.ts
+import { defineCollection } from 'astro:content';
+import { albumSchema } from 'photo-dir-to-json';
+
+const photos = defineCollection({
+    type: 'data',
+    schema: albumSchema,
+})
+
+export const collections = { photos };
+```
+
 # API
 
 See [API documentation](docs/photo-dir-to-json.md) for more information and more
