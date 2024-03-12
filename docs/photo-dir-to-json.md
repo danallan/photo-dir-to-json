@@ -4,6 +4,12 @@
 
 ## photo-dir-to-json package
 
+A library to emit structured JSON data from a portfolio of photos saved and organized in local directories.
+
+## Remarks
+
+The primary [Album](./photo-dir-to-json.album.md) class assumes a directory on disk that contains one or more photo files. A convenience [Portfolio](./photo-dir-to-json.portfolio.md) class can be used to quickly process a directory that contains albums as children.
+
 ## Classes
 
 |  Class | Description |

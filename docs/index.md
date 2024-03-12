@@ -8,5 +8,5 @@
 
 |  Package | Description |
 |  --- | --- |
-|  [photo-dir-to-json](./photo-dir-to-json.md) |  |
+|  [photo-dir-to-json](./photo-dir-to-json.md) | A library to emit structured JSON data from a portfolio of photos saved and organized in local directories. |
 
