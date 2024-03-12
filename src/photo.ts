@@ -39,7 +39,7 @@ export class Photo {
     private _getDateTime(tags: exifreader.Tags): Date {
         let date: Date;
 
-        const exifDateTag = tags['DateTime'];
+        const exifDateTag = tags['DateTimeDigitized'];
         const altDateTag = (
             tags['DateCreated'] || // IPTC
             tags['CreateDate'] // XMP
@@ -51,12 +51,13 @@ export class Photo {
             let exifFormat = 'yyyy:MM:dd HH:mm:ss.SS';
 
             // typically 2 digits of sub-second precision, if available
-            const subsec = (tags['SubSecTime']?.description ?? '00').substring(0, 2);
+            const subsec = (tags['SubSecTimeDigitized']?.description ?? '00').substring(0, 2);
             let timestamp = `${exifDateTag.description}.${subsec}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
-            if (tags['OffsetTime']) {
-                timestamp = `${timestamp}${tags['OffsetTime']}`;
+            const offset = tags['OffsetTimeDigitized'];
+            if (offset) {
+                timestamp = `${timestamp}${offset.description}`;
                 exifFormat = `${exifFormat}X`;
             }
 
@@ -67,10 +68,10 @@ export class Photo {
             date = parseISO(altDateTag.description);
         }
         else {
-            console.warn(`WARNING: Cannot read DateTime from metadata in ` +
-                        `${this.path}, using last modified time instead`);
-            // alias mtime from stat object as date
-            ({ mtime: date } = statSync(this.path));
+            console.warn(`WARNING: Cannot read create date from metadata in ` +
+                        `${this.path}, using file creation time instead`);
+            // alias birthtime from stat object as date
+            ({ birthtime: date } = statSync(this.path));
         }
         return date;
     }
@@ -95,7 +96,7 @@ export class Photo {
      * order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified
      * time. Metadata timestamps are processed according to ISO-8601 and use
      * local time zone unless a timezone offset is included (like EXIF
-     * `OffsetTime`).
+     * `OffsetTimeDigitized`).
      * @returns a promise that, when resolved, provides photoSchema metadata for
      *  the image
      */

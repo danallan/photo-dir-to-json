@@ -39,7 +39,7 @@ Sample metadata corresponding to this schema
 ```json
 {
   "filename": "IMG_2851.jpg", // on-disk file name
-  "date": "2009-12-09T00:33:19.000Z", // ISO-8601 format
+  "date": "2009-12-09T00:33:19.000Z", // date taken in ISO-8601 format
   "width": 1064, // photo width in pixels
   "height": 1600, // photo height in pixels
   "landscape": false // true if width is greater than height
