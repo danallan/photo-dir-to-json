@@ -218,9 +218,11 @@ export const collections = { photos };
 
 # API
 
-See [API documentation](docs/photo-dir-to-json.md) for more information and more
-examples.
+See [API
+documentation](https://github.com/danallan/photo-dir-to-json/blob/main/docs/photo-dir-to-json.md)
+for more information and more examples.
 
 # License
 
-[MIT License](/LICENSE.txt).
+[MIT
+License](https://github.com/danallan/photo-dir-to-json/blob/main/LICENSE.txt).
