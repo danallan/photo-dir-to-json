@@ -7,7 +7,9 @@
         "url": "https://github.com/danallan/photo-dir-to-json.git"
     },
     "scripts": {
-        "build": "tsc && api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",
+        "build:docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",
+        "build": "tsc && yarn build:docs",
+        "clean": "rm -r dist",
         "release": "release-it"
     },
     "dependencies": {
