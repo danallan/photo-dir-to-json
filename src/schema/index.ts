@@ -1,4 +1,4 @@
-export { metadataSchema } from './metadata';
-export type { metadataSchemaType } from './metadata';
-export { albumSchema, photoSchema } from './output';
-export type { albumSchemaType, photoSchemaType } from './output';
+export { metadataSchema } from './metadata.js';
+export type { metadataSchemaType } from './metadata.js';
+export { albumSchema, photoSchema } from './output.js';
+export type { albumSchemaType, photoSchemaType } from './output.js';

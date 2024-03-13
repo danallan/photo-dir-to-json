@@ -1,5 +1,5 @@
-import { Directory } from './fs/dir';
-import { Album, AlbumOptions } from './album';
+import { Directory } from './fs/index.js';
+import { Album, AlbumOptions } from './album.js';
 
 /**
  * Optional Portfolio configuration. Include properties of {@link AlbumOptions}

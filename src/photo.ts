@@ -3,8 +3,8 @@ import { parse as parseDate, parseISO } from 'date-fns';
 import { statSync } from 'fs';
 import { join as pathJoin } from 'path';
 
-import { Directory } from './fs';
-import { photoSchemaType } from './schema';
+import { Directory } from './fs/index.js';
+import { photoSchemaType } from './schema/index.js';
 
 /**
  * Photo class represents a single photo file. It allows for easy fetch of photo

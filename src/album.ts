@@ -1,11 +1,11 @@
-import { Directory } from './fs';
-import { Photo } from './photo';
+import { Directory } from './fs/dir.js';
+import { Photo } from './photo.js';
 import {
     albumSchemaType,
     photoSchemaType,
     metadataSchema,
     metadataSchemaType
-} from './schema';
+} from './schema/index.js';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join as pathJoin, extname } from 'path';
 

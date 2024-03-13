@@ -10,15 +10,15 @@
  * @packageDocumentation
  */
 
-export { Portfolio, PortfolioOptions } from './portfolio';
-export { Album, AlbumOptions } from './album';
-export { Photo } from './photo';
-export { metadataSchema, albumSchema, photoSchema } from './schema';
+export { Portfolio, PortfolioOptions } from './portfolio.js';
+export { Album, AlbumOptions } from './album.js';
+export { Photo } from './photo.js';
+export { metadataSchema, albumSchema, photoSchema } from './schema/index.js';
 export type {
     metadataSchemaType,
     albumSchemaType,
     photoSchemaType
-} from './schema';
+} from './schema/index.js';
 
-import { Portfolio } from './portfolio';
+import { Portfolio } from './portfolio.js';
 export default Portfolio;

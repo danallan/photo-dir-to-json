@@ -1,1 +1,1 @@
-export { Directory } from './dir';
+export { Directory } from './dir.js';

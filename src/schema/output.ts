@@ -1,5 +1,5 @@
 import * as z from 'zod';
-import { metadataSchema } from './metadata';
+import { metadataSchema } from './metadata.js';
 
 /**
  * Metadata output by this library for a single image. This is not meant to be
