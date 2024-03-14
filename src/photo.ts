@@ -1,7 +1,7 @@
 import exifreader from 'exifreader';
 import { parse as parseDate, parseISO } from 'date-fns';
 import { statSync } from 'fs';
-import { join as pathJoin } from 'path';
+import { join as pathJoin, resolve } from 'path';
 
 import { Directory } from './fs/index.js';
 import { photoSchemaType } from './schema/index.js';
@@ -12,28 +12,24 @@ import { photoSchemaType } from './schema/index.js';
  * @public
  */
 export class Photo {
-    private _directory: Directory;
+    /**
+     * On-disk absolute path to the file, e.g.
+     * `/Volume/Photos/Album1/IMG_1234.jpg`
+     */
+    readonly path: string;
     private _metadata: photoSchemaType|null = null;
 
     /**
      * Construct a new instance of the Photo class
-     * @param path - string directory of the album containing the photo (not
+     * @param dir - string directory of the album containing the photo (not
      *   including the photo's filename)
      * @param name - string filename of the photo
      */
-    constructor(path: string,
+    constructor(dir: string,
         /** The on-disk photo filename, e.g. `IMG_1234.jpg`. */
         readonly name: string)
     {
-        this._directory = new Directory(path);
-    }
-
-    /**
-     * On-disk path to the file, e.g. `/Volume/Photos/Album1/IMG_1234.jpg`
-     * @returns string path
-     */
-    get path(): string {
-        return pathJoin(this._directory.path, this.name);
+        this.path = resolve(pathJoin(dir, name));
     }
 
     private _getDateTime(tags: exifreader.Tags): Date {

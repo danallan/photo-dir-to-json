@@ -9,7 +9,7 @@ Construct a new instance of the Photo class
 **Signature:**
 
 ```typescript
-constructor(path: string, 
+constructor(dir: string, 
     name: string);
 ```
 
@@ -17,6 +17,6 @@ constructor(path: string,
 
 |  Parameter | Type | Description |
 |  --- | --- | --- |
-|  path | string | string directory of the album containing the photo (not including the photo's filename) |
+|  dir | string | string directory of the album containing the photo (not including the photo's filename) |
 |  name | string | string filename of the photo |
 

@@ -4,10 +4,10 @@
 
 ## Photo.path property
 
-On-disk path to the file, e.g. `/Volume/Photos/Album1/IMG_1234.jpg`
+On-disk absolute path to the file, e.g. `/Volume/Photos/Album1/IMG_1234.jpg`
 
 **Signature:**
 
 ```typescript
-get path(): string;
+readonly path: string;
 ```

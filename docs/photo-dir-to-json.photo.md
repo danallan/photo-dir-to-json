@@ -16,14 +16,14 @@ export declare class Photo
 
 |  Constructor | Modifiers | Description |
 |  --- | --- | --- |
-|  [(constructor)(path, name)](./photo-dir-to-json.photo._constructor_.md) |  | Construct a new instance of the Photo class |
+|  [(constructor)(dir, name)](./photo-dir-to-json.photo._constructor_.md) |  | Construct a new instance of the Photo class |
 
 ## Properties
 
 |  Property | Modifiers | Type | Description |
 |  --- | --- | --- | --- |
 |  [name](./photo-dir-to-json.photo.name.md) | <code>readonly</code> | string | The on-disk photo filename, e.g. <code>IMG_1234.jpg</code>. |
-|  [path](./photo-dir-to-json.photo.path.md) | <code>readonly</code> | string | On-disk path to the file, e.g. <code>/Volume/Photos/Album1/IMG_1234.jpg</code> |
+|  [path](./photo-dir-to-json.photo.path.md) | <code>readonly</code> | string | On-disk absolute path to the file, e.g. <code>/Volume/Photos/Album1/IMG_1234.jpg</code> |
 
 ## Methods
 
