@@ -42,13 +42,13 @@ export class Photo {
         );
 
         if (exifDateTag) {
-            // typical EXIF date format with an added two-digit
+            // typical EXIF date format with an added three-digit
             // sub-second precision which we add below
-            let exifFormat = 'yyyy:MM:dd HH:mm:ss.SS';
+            let exifFormat = 'yyyy:MM:dd HH:mm:ss.SSS';
 
-            // typically 2 digits of sub-second precision, if available
-            const subsec = (tags['SubSecTimeOriginal']?.description ?? '00').substring(0, 2);
-            let timestamp = `${exifDateTag.description}.${subsec}`;
+            // normalize sub-second data to a max of 3 digits
+            const subsec = (tags['SubSecTimeOriginal']?.description ?? '') + '000';
+            let timestamp = `${exifDateTag.description}.${subsec.substring(0, 3)}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
             const offset = tags['OffsetTimeOriginal'];
