@@ -1,0 +1,4 @@
+{
+    "title": "Test album",
+    "extra": "This extra property should trigger an error"
+}

@@ -1,0 +1,8 @@
+{
+    "title": "Test album",
+    "description": "metadata file",
+    "thumb": "IMG_1234.jpg",
+    "slug": "/path/and-a-slug-title",
+    "unlisted": true,
+    "keywords": ["no photos here", "test"]
+}

@@ -1,0 +1,47 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`metadata > full from dir matches snapshot 1`] = `
+{
+  "description": "metadata dir",
+  "keywords": [
+    "no photos here",
+    "test",
+  ],
+  "photos": [
+    {
+      "date": "2023-01-01T08:00:01.000Z",
+      "filename": "IMG_1234.jpg",
+      "height": 16,
+      "landscape": false,
+      "width": 16,
+    },
+  ],
+  "slug": "metadata-from-dir",
+  "thumb": "IMG_1234.jpg",
+  "title": "Test album",
+  "unlisted": false,
+}
+`;
+
+exports[`metadata > full from file matches snapshot 1`] = `
+{
+  "description": "metadata file",
+  "keywords": [
+    "no photos here",
+    "test",
+  ],
+  "photos": [
+    {
+      "date": "2023-01-01T08:00:01.000Z",
+      "filename": "IMG_1234.jpg",
+      "height": 16,
+      "landscape": false,
+      "width": 16,
+    },
+  ],
+  "slug": "/path/and-a-slug-title",
+  "thumb": "IMG_1234.jpg",
+  "title": "Test album",
+  "unlisted": true,
+}
+`;

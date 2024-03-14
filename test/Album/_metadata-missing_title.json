@@ -1,0 +1,7 @@
+{
+    "description": "metadata file",
+    "thumb": "exif.jpg",
+    "slug": "/path/and-a-slug-title",
+    "unlisted": true,
+    "keywords": ["no photos here", "test"]
+}
