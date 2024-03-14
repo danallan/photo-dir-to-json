@@ -3,7 +3,6 @@ import { parse as parseDate, parseISO } from 'date-fns';
 import { statSync } from 'fs';
 import { join as pathJoin, resolve } from 'path';
 
-import { Directory } from './fs/index.js';
 import { photoSchemaType } from './schema/index.js';
 
 /**
@@ -35,15 +34,18 @@ export class Photo {
     private _getDateTime(tags: exifreader.Tags): Date {
         let date: Date;
 
+        // Ref: https://github.com/mattiasw/ExifReader/blob/main/exif-reader.d.ts
         const exifDateTag = tags['DateTimeOriginal'];
-        const altDateTag = (
-            tags['DateCreated'] || // IPTC
-            tags['CreateDate'] // XMP
-        );
+        const xmpDateTag = tags['CreateDate'];
+        const iptcDateTag = tags['Date Created'];
 
         if (exifDateTag) {
-            // typical EXIF date format with an added three-digit
-            // sub-second precision which we add below
+            /*
+             * https://www.cipa.jp/std/documents/download_e.html?DC-008-Translation-2023-E
+             * typical EXIF date format with up to two added fields:
+             * '.SSS': three-digit sub-second precision added below
+             * 'xxx':  timezone offset "±HH:MM", if offset provided
+             */
             let exifFormat = 'yyyy:MM:dd HH:mm:ss.SSS';
 
             // normalize sub-second data to a max of 3 digits
@@ -51,6 +53,7 @@ export class Photo {
             let timestamp = `${exifDateTag.description}.${subsec.substring(0, 3)}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
+            // otherwise assume local time
             const offset = tags['OffsetTimeOriginal'];
             if (offset) {
                 timestamp = `${timestamp}${offset.description}`;
@@ -59,9 +62,29 @@ export class Photo {
 
             date = parseDate(timestamp, exifFormat, new Date());
         }
-        else if (altDateTag) {
-            // these tags come in a modified ISO-8601 form already
-            date = parseISO(altDateTag.description);
+        else if (xmpDateTag) {
+            // comes in a modified ISO-8601 form already
+            date = parseISO(xmpDateTag.description);
+        }
+        else if (iptcDateTag) {
+            /*
+             * https://iptc.org/std/IIM/4.2/specification/IIMV4.2.pdf
+             * DateCreated:
+             * > Represented in the form CCYYMMDD to designate the date the
+             *   intellectual content of the objectdata was created rather than
+             *   the date of the creation of the physical representation.
+             *   Follows ISO 8601 standard."
+             *
+             * TimeCreated:
+             * > Not repeatable, 11 octets, consisting of graphic characters.
+             *   Represented in the form HHMMSS±HHMM to designate the time the
+             *   intellectual content of the objectdata current source material
+             *   was created rather than the creation of the physical
+             *   representation. Follows ISO 8601 standard."
+             */
+            const timecreated = tags['Time Created']?.description ?? '';
+            const timestamp = `${iptcDateTag.description}T${timecreated}`;
+            date = parseISO(timestamp);
         }
         else {
             console.warn(`WARNING: Cannot read create date from metadata in ` +
