@@ -54,7 +54,7 @@ export class Photo {
             const offset = tags['OffsetTimeDigitized'];
             if (offset) {
                 timestamp = `${timestamp}${offset.description}`;
-                exifFormat = `${exifFormat}X`;
+                exifFormat = `${exifFormat}xxx`;
             }
 
             date = parseDate(timestamp, exifFormat, new Date());
