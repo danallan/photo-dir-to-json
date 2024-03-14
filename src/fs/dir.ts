@@ -1,5 +1,5 @@
 import { Dirent, readdirSync } from 'fs';
-import { basename, join as pathJoin } from 'path';
+import { basename, join as pathJoin, resolve } from 'path';
 
 /**
  * A set of helper functions for a local directory.
@@ -9,8 +9,10 @@ export class Directory {
     private _contents: null | Dirent[] = null;
     private _subdirs: null | Directory[] = null;
     private _name: string;
+    readonly path;
 
-    constructor(readonly path: string) {
+    constructor(path: string) {
+        this.path = resolve(path);
         this._name = basename(path);
     }
 

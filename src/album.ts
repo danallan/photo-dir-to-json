@@ -85,7 +85,7 @@ export class Album {
 
         // verify the thumb exists in this album
         if (this._metadata.thumb && !existsSync(pathJoin(this.path, this._metadata.thumb)))
-            throw new Error(`Thumb ${this._metadata.thumb} not found in album ${this.name}`);
+            throw new Error(`Thumb not found: ${this._metadata.thumb} in album ${this.name}`);
     }
 
     /**
@@ -140,7 +140,7 @@ export class Album {
     }
 
     /**
-     * On-disk path to the album, e.g. `/Volume/Photos/Album1`.
+     * On-disk absolute path to the album, e.g. `/Volume/Photos/Album1`.
      * @returns string path
      */
     get path(): string {

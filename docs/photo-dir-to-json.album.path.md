@@ -4,7 +4,7 @@
 
 ## Album.path property
 
-On-disk path to the album, e.g. `/Volume/Photos/Album1`<!-- -->.
+On-disk absolute path to the album, e.g. `/Volume/Photos/Album1`<!-- -->.
 
 **Signature:**
 
