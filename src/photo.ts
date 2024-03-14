@@ -96,15 +96,10 @@ export class Photo {
     }
 
     private _getDimensions(tags: exifreader.Tags): {width: number, height: number} {
-        let width: number, height: number;
-        try {
-            // with a space reads from file headers, no space is from metadata
-            width = (tags['Image Width'] || tags['ImageWidth'])!.value;
-            height = (tags['Image Height'] || tags['ImageHeight'])!.value;
-        }
-        catch (e) {
-            throw new Error(`Cannot determine size of ${this.path}:\n${e}`);
-        }
+        // with a space reads from file headers, no space is from metadata
+        const width = (tags['Image Width'] || tags['ImageWidth'])!.value;
+        const height = (tags['Image Height'] || tags['ImageHeight'])!.value;
+
         return { width, height };
     }
 
@@ -160,7 +155,13 @@ export class Photo {
         if (this._metadata)
             return this._metadata;
 
-        const tags = await exifreader.load(this.path);
+        let tags;
+        try {
+            tags = await exifreader.load(this.path);
+        }
+        catch (_) {
+            throw new Error(`Invalid image format: ${this.path}`);
+        }
 
         const { width, height } = this._getDimensions(tags);
 

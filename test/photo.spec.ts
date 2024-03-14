@@ -18,7 +18,7 @@ test('get name() is correct', ({ expect }) => {
 test('throws with invalid photo file', async ({ expect }) => {
     // empty.jpg is an empty file
     const empty = new Photo('test/Images-bad', 'empty.jpg');
-    await expect(async () => { await empty.metadata() }).rejects.toThrow();
+    await expect(async () => { await empty.metadata() }).rejects.toThrow(/Invalid image format/);
 });
 
 ['jpg', 'png', 'webp'].forEach((ext) => {
