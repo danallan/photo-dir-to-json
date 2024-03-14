@@ -8,6 +8,8 @@ Metadata output by this library for a single image. This is not meant to be full
 
 This schema is usually used in the context of albumSchema.
 
+For more information on how the date field is processed see remarks under [Photo.metadata()](./photo-dir-to-json.photo.metadata.md)<!-- -->.
+
 **Signature:**
 
 ```typescript

@@ -111,11 +111,48 @@ export class Photo {
     /**
      * Asynchronously compute the {@link photoSchema} metadata for the image.
      * The data is processed once and cached, so multiple executions will emit
-     * the same data. The date information is searched in the file in this
-     * order: EXIF tags, IPTC tags, XMP tags, and falls back to on-disk modified
-     * time. Metadata timestamps are processed according to ISO-8601 and use
-     * local time zone unless a timezone offset is included (like EXIF
-     * `OffsetTimeDigitized`).
+     * the same data. Date is fetched first from metadata and falls back to
+     * on-disk creation time if not available, see remarks.
+     *
+     * @remarks
+     * Date information is searched from the photo file in the following
+     * sequence, in order of preference:
+     *
+     * 1. EXIF metadata via `DateTimeOriginal`. When using EXIF, sub-second
+     *    resolution from `SubSecTimeOriginal` and timezone offset
+     *    `OffsetTimeOriginal` are applied to the timestamp if available.
+     *
+     * 2. XMP metadata via `CreateDate`.
+     *
+     * 3. IPTC metadata via `DateCreated`. `TimeCreated` is appended to the
+     *    timestamp if available.
+     *
+     * 4. file's creation (birth) time on-disk.
+     *
+     * The date is emitted in UTC and uses timezone offset when available. If
+     * the timezone offset is missing then dates are assumed to be in local time
+     * during the conversion to UTC.
+     *
+     * Examples:
+     *
+     * 1. EXIF date is `2024:01:01 12:00:00` and the EXIF offset time is set as
+     *    `+02:00`. The emitted time is then `2024-01-01T10:00:00.000Z`,
+     *    regardless of your computer's time zone setting.
+     *
+     * 2. EXIF metadata is `2024:01:01 12:00:00` with a missing offset, and your
+     *    computer's time zone is set to `-05:00` (America/New_York), the date
+     *    will be output as `2024-01-01T17:00:00.000Z`. When the date is
+     *    processed by the downstream application it will be emitted to match
+     *    the appearance in the metadata when using local time.
+     *
+     * If you know the time zone offset for a photo it is always better to
+     * explicitly set the offset (like `OffsetTimeOriginal` EXIF field) in the
+     * photo file. {@link https://exiftool.org/ | ExifTool} is one way to set
+     * this field in your files.
+     *
+     * For more information on tag specifics, see:
+     * {@link https://www.iptc.org/std/photometadata/documentation/mappingguidelines/#exif-note-on-date-created | IPTC Photo Mapping Guidelines: EXIF Note on Date Created}
+     *
      * @returns a promise that, when resolved, provides photoSchema metadata for
      *  the image
      */

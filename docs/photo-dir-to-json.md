@@ -31,7 +31,7 @@ The primary [Album](./photo-dir-to-json.album.md) class assumes a directory on d
 |  --- | --- |
 |  [albumSchema](./photo-dir-to-json.albumschema.md) | <p>Metadata output by this library. It consists of passed-through input metadata conforming to [metadataSchema](./photo-dir-to-json.metadataschema.md) combined with an array of [photoSchema](./photo-dir-to-json.photoschema.md) metadata for all photos inside the album directory.</p><p>Use this schema in your downstream application to easily load the JSON files, see the example under [albumSchemaType](./photo-dir-to-json.albumschematype.md)<!-- -->.</p> |
 |  [metadataSchema](./photo-dir-to-json.metadataschema.md) | A schema corresponding to the input metadata for this library. |
-|  [photoSchema](./photo-dir-to-json.photoschema.md) | <p>Metadata output by this library for a single image. This is not meant to be full EXIF data, just enough information about the photo to be useful to sort, display, and appropraite size the photo and its thumbnails on a website.</p><p>This schema is usually used in the context of albumSchema.</p> |
+|  [photoSchema](./photo-dir-to-json.photoschema.md) | <p>Metadata output by this library for a single image. This is not meant to be full EXIF data, just enough information about the photo to be useful to sort, display, and appropraite size the photo and its thumbnails on a website.</p><p>This schema is usually used in the context of albumSchema.</p><p>For more information on how the date field is processed see remarks under [Photo.metadata()](./photo-dir-to-json.photo.metadata.md)<!-- -->.</p> |
 
 ## Type Aliases
 

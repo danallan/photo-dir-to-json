@@ -7,6 +7,9 @@ import { metadataSchema } from './metadata.js';
  * display, and appropraite size the photo and its thumbnails on a website.
  *
  * This schema is usually used in the context of albumSchema.
+ *
+ * For more information on how the date field is processed see remarks
+ * under {@link Photo.metadata}.
  * @example Sample metadata corresponding to this schema
  * ```json
  * {
