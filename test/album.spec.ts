@@ -1,6 +1,5 @@
 import { describe, test, vi } from 'vitest';
-import { Album } from '../src/album.js';
-import { albumSchema } from '../src/schema/index.js';
+import { Album, albumSchema } from '../src/index.js';
 import { resolve, join as pathJoin } from 'path';
 import { readFileSync, rmSync } from 'fs';
 

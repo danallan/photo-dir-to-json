@@ -1,5 +1,5 @@
 import { describe, test } from 'vitest';
-import { Photo } from '../src/photo.js';
+import { Photo } from '../src/index.js';
 import { resolve } from 'path';
 
 const images = 'test/Images';

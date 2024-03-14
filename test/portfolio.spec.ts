@@ -1,6 +1,5 @@
 import { test } from 'vitest';
-import { Portfolio } from '../src/portfolio.js';
-import { albumSchema } from '../src/schema/index.js';
+import { albumSchema, Portfolio } from '../src/index.js';
 import { existsSync, mkdirSync, rmSync, readFileSync } from 'fs';
 import { join as pathJoin } from 'path';
 
