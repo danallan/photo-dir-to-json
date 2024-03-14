@@ -35,7 +35,7 @@ export class Photo {
     private _getDateTime(tags: exifreader.Tags): Date {
         let date: Date;
 
-        const exifDateTag = tags['DateTimeDigitized'];
+        const exifDateTag = tags['DateTimeOriginal'];
         const altDateTag = (
             tags['DateCreated'] || // IPTC
             tags['CreateDate'] // XMP
@@ -47,11 +47,11 @@ export class Photo {
             let exifFormat = 'yyyy:MM:dd HH:mm:ss.SS';
 
             // typically 2 digits of sub-second precision, if available
-            const subsec = (tags['SubSecTimeDigitized']?.description ?? '00').substring(0, 2);
+            const subsec = (tags['SubSecTimeOriginal']?.description ?? '00').substring(0, 2);
             let timestamp = `${exifDateTag.description}.${subsec}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
-            const offset = tags['OffsetTimeDigitized'];
+            const offset = tags['OffsetTimeOriginal'];
             if (offset) {
                 timestamp = `${timestamp}${offset.description}`;
                 exifFormat = `${exifFormat}xxx`;
