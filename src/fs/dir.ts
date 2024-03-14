@@ -6,7 +6,6 @@ import { basename, join as pathJoin, resolve } from 'path';
  * @internal
  */
 export class Directory {
-    private _contents: null | Dirent[] = null;
     private _subdirs: null | Directory[] = null;
     private _name: string;
     readonly path;
@@ -21,11 +20,7 @@ export class Directory {
     }
 
     private contents(): Dirent[] {
-        if (this._contents !== null)
-            return this._contents;
-
-        this._contents = readdirSync(this.path, { withFileTypes: true });
-        return this._contents;
+        return readdirSync(this.path, { withFileTypes: true });
     }
 
     public getSubDirectoriesSync(except: string[]): Directory[] {
