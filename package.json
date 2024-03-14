@@ -8,9 +8,11 @@
     },
     "scripts": {
         "build:docs": "api-extractor run --local --verbose && api-documenter markdown --input-folder temp --output-folder docs",
-        "build": "tsc && yarn build:docs",
+        "build": "yarn test:ci && tsc && yarn build:docs",
         "clean": "rm -r dist",
-        "release": "release-it"
+        "release": "release-it",
+        "test": "vitest",
+        "test:ci": "vitest run"
     },
     "dependencies": {
         "date-fns": "^3.4.0",
@@ -25,7 +27,8 @@
         "@types/node": "^20.11.24",
         "esrun": "^3.2.26",
         "release-it": "^17.1.1",
-        "typescript": "^5.3.3"
+        "typescript": "^5.3.3",
+        "vitest": "^1.3.1"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
