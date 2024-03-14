@@ -1,18 +1,19 @@
-import { describe, test } from 'vitest';
+import { describe, test, vi } from 'vitest';
 import { Photo } from '../src/index.js';
 import { resolve } from 'path';
+import exifreader from 'exifreader';
 
 const images = 'test/Images';
 
 test('get path() returns absolute path', ({ expect }) => {
-    const jpg = new Photo(images, '1.jpg');
-    const path = resolve(`${images}/1.jpg`);
+    const jpg = new Photo(images, 'img_Name123.jpg');
+    const path = resolve(`${images}/img_Name123.jpg`);
     expect(jpg.path).toEqual(path);
 });
 
 test('get name() is correct', ({ expect }) => {
-    const jpg = new Photo(images, '1.jpg');
-    expect(jpg.name).toEqual('1.jpg');
+    const jpg = new Photo(images, 'img_Name123.jpg');
+    expect(jpg.name).toEqual('img_Name123.jpg');
 });
 
 test('throws with invalid photo file', async ({ expect }) => {
@@ -117,4 +118,16 @@ describe('date parsing', () => {
         const d = await (new Photo(images, 'no_date.jpg')).metadata();
         expect(d.date).toBe('2024-01-01T00:00:01.000Z');
     });
+});
+
+test('metadata is not read from file twice', async ({ expect }) => {
+    const exifreaderSpy = vi.spyOn(exifreader, 'load');
+
+    const photo = new Photo(images, 'exif.jpg');
+    await photo.metadata();
+    await photo.metadata();
+
+    expect(exifreaderSpy).toBeCalledTimes(1);
+
+    exifreaderSpy.mockRestore();
 });

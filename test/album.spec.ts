@@ -57,7 +57,7 @@ describe('options object', () => {
 
     test('allowedExtensions overrides default', ({ expect }) => {
         const consoleSpy = vi.spyOn(console, 'error');
-        expect(consoleSpy.mock.calls.length).toBe(0);
+        expect(consoleSpy).toBeCalledTimes(0);
 
         const opts = { allowedExtensions: ['png'] };
         const photos = (new Album(images, opts)).photos;
