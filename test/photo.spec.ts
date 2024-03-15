@@ -1,6 +1,7 @@
 import { describe, test, vi } from 'vitest';
 import { Photo } from '../src/index.js';
-import { resolve } from 'path';
+import { resolve, join as pathJoin } from 'path';
+import { statSync, utimesSync } from 'fs';
 import exifreader from 'exifreader';
 
 const images = 'test/Images';
@@ -113,10 +114,18 @@ describe('date parsing', () => {
     });
 
     test('falls back to file creation time when no metadata', async ({ expect }) => {
-        // `SetFile -d '12/31/2023 16:00:01' no_date.jpg`
-        // on my utc-8 timezone machine. Verify with `stat -t %c`
-        const d = await (new Photo(images, 'no_date.jpg')).metadata();
-        expect(d.date).toBe('2024-01-01T00:00:01.000Z');
+        // btime is immutable on linux, so let's just dynamically check
+        // verify with `stat -t %c`
+        const img = 'no_date.jpg';
+        const file = pathJoin(images, img);
+        const now = new Date();
+
+        // set atime and mtime to a newer time than the btime
+        utimesSync(file, now, now);
+        const { birthtime } = statSync(file);
+
+        const d = await (new Photo(images, img)).metadata();
+        expect(d.date).toBe(birthtime.toISOString());
     });
 });
 
