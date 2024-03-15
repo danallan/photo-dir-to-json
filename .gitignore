@@ -5,6 +5,7 @@ dist/
 node_modules/
 temp/
 build/
+coverage/
 
 #yarn
 .pnp.*

@@ -12,8 +12,7 @@
         "clean": "rm -r dist",
         "release": "release-it",
         "test": "vitest",
-        "test:ci": "vitest run",
-        "coverage": "vitest run --coverage"
+        "test:ci": "vitest run --coverage"
     },
     "dependencies": {
         "date-fns": "^3.4.0",
