@@ -27,6 +27,7 @@ export declare class Album
 |  [photos](./photo-dir-to-json.album.photos.md) | <code>readonly</code> | [Photo](./photo-dir-to-json.photo.md)<!-- -->\[\] | List of Photo classes for all images found in the album path. Only files with extensions from [\`allowedExtensions\` property](./photo-dir-to-json.albumoptions.md) are processed, all others are ignored. Any ignored file extensions not specified in [\`skippedExtensions\` property](./photo-dir-to-json.albumoptions.md) prints a warning to the console notifying you that they were skipped. |
 |  [slug](./photo-dir-to-json.album.slug.md) | <code>readonly</code> | string | The <code>slug</code> field defined in the Album metadata, defaulting to the Album's on-disk directory name lower cased. For example, if the slug is not specified in the input metadata, the slug for an album located at <code>/Volume/Photos/Album1</code> becomes <code>album1</code>. |
 |  [title](./photo-dir-to-json.album.title.md) | <code>readonly</code> | string | By default, album title is the album directory name but is overridden by the <code>title</code> property in album metadata when supplied. |
+|  [unlisted](./photo-dir-to-json.album.unlisted.md) | <code>readonly</code> | boolean | Returns <code>true</code> if and only if the Album metadata defines the unlisted property as <code>true</code>. |
 
 ## Methods
 

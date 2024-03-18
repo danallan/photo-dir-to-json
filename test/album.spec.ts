@@ -33,6 +33,11 @@ describe('getters', () => {
         expect(album.title).toEqual(album.name);
     });
 
+    test('unlisted is false by default', ({ expect }) => {
+        const album = new Album(albumdir);
+        expect(album.unlisted).toBe(false);
+    })
+
     test('photos includes all jpg, jpeg, png, webp, no json', ({ expect }) => {
         const photos = (new Album(images)).photos;
         expect(photos.length).toBe(13);
@@ -97,6 +102,11 @@ describe('metadata', () => {
     test('slug getter is overwritten by metadata', ({ expect }) => {
         const album = new Album(albumdir, { metadataFile });
         expect(album.slug).toBe('/path/and-a-slug-title');
+    });
+
+    test('unlisted getter is overwritten by metadata', ({ expect }) => {
+        const album = new Album(albumdir, { metadataFile });
+        expect(album.unlisted).toBe(true);
     });
 
     test('throws error when thumb specified but file not found', ({ expect }) => {

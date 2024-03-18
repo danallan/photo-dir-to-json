@@ -158,6 +158,14 @@ export class Album {
     }
 
     /**
+     * Returns `true` if and only if the Album metadata defines the unlisted
+     * property as `true`.
+     */
+    get unlisted(): boolean {
+        return this._metadata.unlisted === true;
+    }
+
+    /**
      * The on-disk name of the album's directory. If the path is
      * `/Volume/Photos/Album1` the name is `Album1`.
      * @returns directory name of the album
@@ -171,7 +179,7 @@ export class Album {
             ...this._metadata,
             title: this.title,
             slug: this.slug,
-            unlisted: this._metadata.unlisted === true,
+            unlisted: this.unlisted,
             photos,
         }
     }
