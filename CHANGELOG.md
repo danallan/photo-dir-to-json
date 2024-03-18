@@ -1,5 +1,20 @@
 
 
+## [1.1.0](https://github.com/danallan/photo-dir-to-json/compare/1.0.2...1.1.0) (2024-03-18)
+
+
+### Features
+
+* Add unlisted getter to Album ([de3578e](https://github.com/danallan/photo-dir-to-json/commit/de3578e8793fbd98188c4f26b9e617f9f2151afe))
+
+
+### Bug Fixes
+
+* align path resolution behavior across all classes ([1a241ab](https://github.com/danallan/photo-dir-to-json/commit/1a241ab4eb6d40ec8e4e22deae3fcb94c85d0291))
+* Remove needless caching from internal Directory class ([c6ad67a](https://github.com/danallan/photo-dir-to-json/commit/c6ad67acdea1bb18bb32bb45049fe585d0de1dda))
+* Rename test/images to test/Images for case-sensitive filesystems ([#1](https://github.com/danallan/photo-dir-to-json/issues/1)) ([4daee50](https://github.com/danallan/photo-dir-to-json/commit/4daee505c18066e2dd7366964ac2910f32e5063f))
+* Throw more helpful error earlier if image is invalid ([54436a6](https://github.com/danallan/photo-dir-to-json/commit/54436a669569d24705c2f60f4b5c06595a6518b7))
+
 ## [1.0.2](https://github.com/danallan/photo-dir-to-json/compare/1.0.1...1.0.2) (2024-03-14)
 
 
