@@ -31,13 +31,13 @@ export class Photo {
         this.path = resolve(pathJoin(dir, name));
     }
 
-    private _getDateTime(tags: exifreader.Tags): Date {
+    private _getDateTime(tags: exifreader.ExpandedTags): Date {
         let date: Date;
 
         // Ref: https://github.com/mattiasw/ExifReader/blob/main/exif-reader.d.ts
-        const exifDateTag = tags['DateTimeOriginal'];
-        const xmpDateTag = tags['CreateDate'];
-        const iptcDateTag = tags['Date Created'];
+        const exifDateTag = tags.exif && tags.exif['DateTimeOriginal'];
+        const xmpDateTag = tags.xmp && tags.xmp['CreateDate'];
+        const iptcDateTag = tags.iptc && tags.iptc['Date Created'];
 
         if (exifDateTag) {
             /*
@@ -49,12 +49,12 @@ export class Photo {
             let exifFormat = 'yyyy:MM:dd HH:mm:ss.SSS';
 
             // normalize sub-second data to a max of 3 digits
-            const subsec = (tags['SubSecTimeOriginal']?.description ?? '') + '000';
+            const subsec = (tags.exif!['SubSecTimeOriginal']?.description ?? '') + '000';
             let timestamp = `${exifDateTag.description}.${subsec.substring(0, 3)}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
             // otherwise assume local time
-            const offset = tags['OffsetTimeOriginal'];
+            const offset = tags.exif!['OffsetTimeOriginal'];
             if (offset) {
                 timestamp = `${timestamp}${offset.description}`;
                 exifFormat = `${exifFormat}xxx`;
@@ -82,7 +82,7 @@ export class Photo {
              *   was created rather than the creation of the physical
              *   representation. Follows ISO 8601 standard."
              */
-            const timecreated = tags['Time Created']?.description ?? '';
+            const timecreated = tags.iptc!['Time Created']?.description ?? '';
             const timestamp = `${iptcDateTag.description}T${timecreated}`;
             date = parseISO(timestamp);
         }
@@ -95,12 +95,23 @@ export class Photo {
         return date;
     }
 
-    private _getDimensions(tags: exifreader.Tags): {width: number, height: number} {
-        // with a space reads from file headers, no space is from metadata
-        const width = (tags['Image Width'] || tags['ImageWidth'])!.value;
-        const height = (tags['Image Height'] || tags['ImageHeight'])!.value;
+    private _getDimensions(tags: exifreader.ExpandedTags): {width: number, height: number} {
+        let width, height;
 
-        return { width, height };
+        if (tags.riff) {
+            width = tags.riff['ImageWidth']!;
+            height = tags.riff['ImageHeight']!;
+        }
+        else if (tags.pngFile) {
+            width = tags.pngFile['Image Width']!;
+            height = tags.pngFile['Image Height']!;
+        }
+        else {
+            width = tags.file!['Image Width']!;
+            height = tags.file!['Image Height']!;
+        }
+
+        return { width: width.value, height: height.value };
     }
 
     /**
@@ -157,7 +168,7 @@ export class Photo {
 
         let tags;
         try {
-            tags = await exifreader.load(this.path);
+            tags = await exifreader.load(this.path, {expanded: true});
         }
         catch (_) {
             throw new Error(`Invalid image format: ${this.path}`);
