@@ -115,6 +115,26 @@ export class Photo {
     }
 
     /**
+     * Fetches the XMP-dc (Dublin Core namespace) `identifier` field:
+     * https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/identifier
+     * @param tags - Expanded Tags object from exifreader
+     * @returns XMP-dc:identifier string, if present, else undefined
+     */
+    private _getXmpIdentifier(tags: exifreader.ExpandedTags): string|undefined {
+        return tags.xmp?.identifier?.description;
+    }
+
+    /**
+     * Fetche the XMP-dc (Dublin Core namespace) `description` field:
+     * https://www.dublincore.org/specifications/dublin-core/dcmi-terms/#http://purl.org/dc/terms/description
+     * @param tags - Expanded Tags object from exifreader
+     * @returns XMP-dc:description string, if present, else undefined
+     */
+    private _getXmpDescription(tags: exifreader.ExpandedTags): string|undefined {
+        return tags.xmp?.description?.description;
+    }
+
+    /**
      * Asynchronously compute the {@link photoSchema} metadata for the image.
      * The data is processed once and cached, so multiple executions will emit
      * the same data. Date is fetched first from metadata and falls back to
@@ -183,6 +203,12 @@ export class Photo {
             height,
             landscape: width > height,
         };
+
+        const id = this._getXmpIdentifier(tags);
+        if (id) this._metadata.id = id;
+
+        const desc = this._getXmpDescription(tags);
+        if (desc) this._metadata.alt = desc;
 
         return this._metadata;
     }

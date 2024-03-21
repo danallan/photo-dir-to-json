@@ -24,18 +24,24 @@ albumSchema: z.ZodObject<{
         landscape: z.ZodBoolean;
         width: z.ZodNumber;
         height: z.ZodNumber;
+        id: z.ZodOptional<z.ZodString>;
+        alt: z.ZodOptional<z.ZodString>;
     }, "strict", z.ZodTypeAny, {
         filename: string;
         date: string;
         landscape: boolean;
         width: number;
         height: number;
+        id?: string | undefined;
+        alt?: string | undefined;
     }, {
         filename: string;
         date: string;
         landscape: boolean;
         width: number;
         height: number;
+        id?: string | undefined;
+        alt?: string | undefined;
     }>, "many">;
 }, "strict", z.ZodTypeAny, {
     title: string;
@@ -47,6 +53,8 @@ albumSchema: z.ZodObject<{
         landscape: boolean;
         width: number;
         height: number;
+        id?: string | undefined;
+        alt?: string | undefined;
     }[];
     description?: string | undefined;
     thumb?: string | undefined;
@@ -61,6 +69,8 @@ albumSchema: z.ZodObject<{
         landscape: boolean;
         width: number;
         height: number;
+        id?: string | undefined;
+        alt?: string | undefined;
     }[];
     description?: string | undefined;
     thumb?: string | undefined;

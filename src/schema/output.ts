@@ -4,12 +4,13 @@ import { metadataSchema } from './metadata.js';
 /**
  * Metadata output by this library for a single image. This is not meant to be
  * full EXIF data, just enough information about the photo to be useful to sort,
- * display, and appropraite size the photo and its thumbnails on a website.
+ * display, appropriately size, and provide meaningful `alt` tag for the photo
+ * and its thumbnails on a website.
  *
  * This schema is usually used in the context of albumSchema.
  *
- * For more information on how the date field is processed see remarks
- * under {@link Photo.metadata}.
+ * For more information on how the date field is processed see remarks under
+ * {@link Photo.metadata}.
  * @example Sample metadata corresponding to this schema
  * ```json
  * {
@@ -17,7 +18,9 @@ import { metadataSchema } from './metadata.js';
  *   "date": "2009-12-09T00:33:19.000Z", // date taken in ISO-8601 format
  *   "width": 1064, // photo width in pixels
  *   "height": 1600, // photo height in pixels
- *   "landscape": false // true if width is greater than height
+ *   "landscape": false, // true if width is greater than height
+ *   "id": "image-id-str", // XMP (Dublin Core) `dc:identifier`, if present
+ *   "alt": "Photo description", // XMP `dc:description`, if present
  * }
  * ```
  * @public
@@ -28,6 +31,8 @@ export const photoSchema = z.object({
     landscape: z.boolean(),
     width: z.number(),
     height: z.number(),
+    id: z.string().optional(),
+    alt: z.string().optional(),
 }).strict();
 
 /**

@@ -4,7 +4,7 @@
 
 ## photoSchema variable
 
-Metadata output by this library for a single image. This is not meant to be full EXIF data, just enough information about the photo to be useful to sort, display, and appropraite size the photo and its thumbnails on a website.
+Metadata output by this library for a single image. This is not meant to be full EXIF data, just enough information about the photo to be useful to sort, display, appropriately size, and provide meaningful `alt` tag for the photo and its thumbnails on a website.
 
 This schema is usually used in the context of albumSchema.
 
@@ -19,18 +19,24 @@ photoSchema: z.ZodObject<{
     landscape: z.ZodBoolean;
     width: z.ZodNumber;
     height: z.ZodNumber;
+    id: z.ZodOptional<z.ZodString>;
+    alt: z.ZodOptional<z.ZodString>;
 }, "strict", z.ZodTypeAny, {
     filename: string;
     date: string;
     landscape: boolean;
     width: number;
     height: number;
+    id?: string | undefined;
+    alt?: string | undefined;
 }, {
     filename: string;
     date: string;
     landscape: boolean;
     width: number;
     height: number;
+    id?: string | undefined;
+    alt?: string | undefined;
 }>
 ```
 
@@ -44,7 +50,9 @@ Sample metadata corresponding to this schema
   "date": "2009-12-09T00:33:19.000Z", // date taken in ISO-8601 format
   "width": 1064, // photo width in pixels
   "height": 1600, // photo height in pixels
-  "landscape": false // true if width is greater than height
+  "landscape": false, // true if width is greater than height
+  "id": "image-id-str", // XMP (Dublin Core) `dc:identifier`, if present
+  "alt": "Photo description", // XMP `dc:description`, if present
 }
 ```
 

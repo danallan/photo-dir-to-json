@@ -129,6 +129,22 @@ describe('date parsing', () => {
     });
 });
 
+describe('optional metadata', () => {
+    test('id, alt not present by default', async ({ expect }) => {
+        const d = await (new Photo(images, 'exif.jpg')).metadata();
+        expect(d).not.toHaveProperty('id');
+        expect(d).not.toHaveProperty('alt');
+    });
+    test('id present when defined', async ({ expect }) => {
+        const d = await (new Photo(images, 'xmp.jpg')).metadata();
+        expect(d.id).toBe('i-hR6hQk');
+    })
+    test('alt', async ({ expect }) => {
+        const d = await (new Photo(images, 'xmp.jpg')).metadata();
+        expect(d.alt).toBe('Descriptive text');
+    });
+});
+
 test('metadata is not read from file twice', async ({ expect }) => {
     const exifreaderSpy = vi.spyOn(exifreader, 'load');
 
