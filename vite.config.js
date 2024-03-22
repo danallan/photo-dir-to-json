@@ -9,6 +9,7 @@ export default defineConfig({
                 ...configDefaults.coverage.exclude,
                 'temp/**',
                 'build/**',
+                '*.config.js',
             ],
         },
     },

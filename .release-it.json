@@ -1,4 +1,7 @@
 {
+    "git": {
+        "commitMessage": "chore: Release ${version}"
+    },
     "hooks": {
         "after:bump": "yarn clean && yarn build"
     },

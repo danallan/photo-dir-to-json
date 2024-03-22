@@ -15,7 +15,10 @@
         "format": "prettier . --write",
         "format:check": "prettier . --check",
         "test": "vitest",
-        "test:ci": "yarn lint && yarn format:check && vitest run --coverage"
+        "test:ci": "yarn lint && yarn format:check && vitest run --coverage",
+        "postinstall": "husky",
+        "prepack": "pinst --disable",
+        "postpack": "pinst --enable"
     },
     "dependencies": {
         "date-fns": "^3.6.0",
@@ -23,6 +26,8 @@
         "zod": "^3.22.4"
     },
     "devDependencies": {
+        "@commitlint/cli": "^19.2.1",
+        "@commitlint/config-conventional": "^19.1.0",
         "@microsoft/api-documenter": "^7.23.37",
         "@microsoft/api-extractor": "^7.43.0",
         "@release-it/conventional-changelog": "^8.0.1",
@@ -33,6 +38,8 @@
         "eslint": "^8.57.0",
         "eslint-config-prettier": "^9.1.0",
         "esrun": "^3.2.26",
+        "husky": "^9.0.11",
+        "pinst": "^3.0.0",
         "prettier": "3.2.5",
         "release-it": "^17.1.1",
         "typescript": "^5.4.3",
