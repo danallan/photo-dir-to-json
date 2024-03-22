@@ -7,7 +7,7 @@ import { readFileSync, rmSync } from 'fs';
 const images = './test/Images';
 
 // a narrowly defined album for snapshots
-const albumdir = './test/Album'
+const albumdir = './test/Album';
 const metadataDir = './test/metadata';
 const metadataFile = '_metadata.json';
 
@@ -36,20 +36,20 @@ describe('getters', () => {
     test('unlisted is false by default', ({ expect }) => {
         const album = new Album(albumdir);
         expect(album.unlisted).toBe(false);
-    })
+    });
 
     test('photos includes all jpg, jpeg, png, webp, no json', ({ expect }) => {
-        const photos = (new Album(images)).photos;
+        const photos = new Album(images).photos;
         expect(photos.length).toBe(13);
 
-        const names = photos.map(p => p.name);
+        const names = photos.map((p) => p.name);
         expect(names).toContain('exif.jpg');
         expect(names).toContain('exif.png');
         expect(names).toContain('exif.webp');
     });
 
     test('photos can be empty', ({ expect }) => {
-        const photos = (new Album(metadataDir)).photos;
+        const photos = new Album(metadataDir).photos;
         expect(photos).toEqual([]);
     });
 });
@@ -57,7 +57,9 @@ describe('getters', () => {
 describe('options object', () => {
     test('cannot specify both metadataDir and metadataFile', ({ expect }) => {
         const opts = { metadataDir, metadataFile };
-        expect(() => { new Album(albumdir, opts); }).toThrow();
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow();
     });
 
     test('allowedExtensions overrides default', ({ expect }) => {
@@ -65,8 +67,8 @@ describe('options object', () => {
         expect(consoleSpy).toBeCalledTimes(0);
 
         const opts = { allowedExtensions: ['png'] };
-        const photos = (new Album(images, opts)).photos;
-        const names = photos.map(p => p.name);
+        const photos = new Album(images, opts).photos;
+        const names = photos.map((p) => p.name);
 
         // all PNG files
         expect(names).toEqual(['exif.png', 'wide.png']);
@@ -84,7 +86,7 @@ describe('options object', () => {
             skippedExtensions: ['json', 'jpg', 'png', 'webp'],
         };
         const consoleSpy = vi.spyOn(console, 'error');
-        (new Album(images, opts)).photos;
+        new Album(images, opts).photos;
 
         // expect no warnings
         expect(consoleSpy).not.toBeCalled();
@@ -111,38 +113,50 @@ describe('metadata', () => {
 
     test('throws error when title missing from metadata', ({ expect }) => {
         const opts = { metadataFile: '_metadata-missing_title.json' };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/Required/);
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/Required/);
     });
 
     test('throws error when thumb specified but file not found', ({ expect }) => {
         const opts = { metadataFile: '_metadata-missing_thumb.json' };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/Thumb not found/);
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/Thumb not found/);
     });
 
     test('throws error when thumb specified but extension not allowed', ({ expect }) => {
         const opts = {
             metadataFile: '_metadata.json',
-            allowedExtensions: []
+            allowedExtensions: [],
         };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/Thumb excluded/);
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/Thumb excluded/);
     });
 
     test('throws error when order specified but a file is not found', ({ expect }) => {
         const opts = { metadataFile: '_metadata-missing_order.json' };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/Order file not found/);
-    })
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/Order file not found/);
+    });
 
     test('throws error when order specified but extension not allowed', ({ expect }) => {
         const opts = {
             metadataFile: '_metadata.json',
-            allowedExtensions: ['jpg']
+            allowedExtensions: ['jpg'],
         };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/Order file excluded/);
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/Order file excluded/);
     });
 
     test('throws error when metadata file has extra property', ({ expect }) => {
         const opts = { metadataFile: '_metadata-strict.json' };
-        expect(() => { new Album(albumdir, opts) }).toThrow(/unrecognized_keys/)
+        expect(() => {
+            new Album(albumdir, opts);
+        }).toThrow(/unrecognized_keys/);
     });
 
     test('read from metadataDir', ({ expect }) => {

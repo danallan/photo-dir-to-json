@@ -1,10 +1,18 @@
 {
-  "trailingComma": "es5",
-  "tabWidth": 4,
-  "useTabs": false,
-  "semi": true,
-  "quoteProps": "as-needed",
-  "singleQuote": true,
-  "bracketSpacing": true,
-  "arrowParens": "always"
+    "trailingComma": "es5",
+    "tabWidth": 4,
+    "useTabs": false,
+    "semi": true,
+    "quoteProps": "as-needed",
+    "singleQuote": true,
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "overrides": [
+        {
+            "files": "test/*.spec.ts",
+            "options": {
+                "printWidth": 120
+            }
+        }
+    ]
 }

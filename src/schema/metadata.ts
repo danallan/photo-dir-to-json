@@ -38,20 +38,22 @@ import * as z from 'zod';
  * ```
  * @public
  */
-export const metadataSchema = z.object({
-    title: z.string(),
-    description: z.string().optional(),
-    /** preferred album thumb image filename in the album */
-    thumb: z.string().optional(),
-    /** a slug is a URL path, like /photos/album1 */
-    slug: z.string().optional(),
-    /** an unlisted album is published but not linked to */
-    unlisted: z.boolean().optional(),
-    /** album-wide keywords for SEO */
-    keywords: z.array(z.string()).optional(),
-    /** list of image filenames for custom ordering */
-    order: z.array(z.string()).optional(),
-}).strict();
+export const metadataSchema = z
+    .object({
+        title: z.string(),
+        description: z.string().optional(),
+        /** preferred album thumb image filename in the album */
+        thumb: z.string().optional(),
+        /** a slug is a URL path, like /photos/album1 */
+        slug: z.string().optional(),
+        /** an unlisted album is published but not linked to */
+        unlisted: z.boolean().optional(),
+        /** album-wide keywords for SEO */
+        keywords: z.array(z.string()).optional(),
+        /** list of image filenames for custom ordering */
+        order: z.array(z.string()).optional(),
+    })
+    .strict();
 
 /**
  * A TypeScript type of {@link metadataSchema}.

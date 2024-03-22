@@ -17,7 +17,7 @@ export { metadataSchema, albumSchema, photoSchema } from './schema/index.js';
 export type {
     metadataSchemaType,
     albumSchemaType,
-    photoSchemaType
+    photoSchemaType,
 } from './schema/index.js';
 
 import { Portfolio } from './portfolio.js';

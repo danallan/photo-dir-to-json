@@ -20,11 +20,10 @@ test('can skip albums', ({ expect }) => {
 
 test('saveAllMetadata()', async ({ expect }) => {
     const metadataOutDir = './test/metadata/portfolio-out';
-    if (!existsSync(metadataOutDir))
-        mkdirSync(metadataOutDir);
+    if (!existsSync(metadataOutDir)) mkdirSync(metadataOutDir);
 
     // remember the files we write out for later sanity check
-    type memo = { slug: string, path: string };
+    type memo = { slug: string; path: string };
     const output: memo[] = [];
 
     const portfolio = new Portfolio(dir, { skipAlbumNames });

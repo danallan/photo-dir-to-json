@@ -10,7 +10,7 @@ export interface PortfolioOptions extends AlbumOptions {
     /**
      * A list of subdirectory names inside of the Portfolio path to skip.
      */
-    skipAlbumNames?: string[],
+    skipAlbumNames?: string[];
 }
 
 /**
@@ -33,10 +33,10 @@ export class Portfolio {
      *  passed to each new Album class instance.
      */
     constructor(
-            /** String path to the Portfolio directory */
-            readonly path: string,
-            opts?: PortfolioOptions)
-    {
+        /** String path to the Portfolio directory */
+        readonly path: string,
+        opts?: PortfolioOptions
+    ) {
         this._directory = new Directory(path);
 
         const skip = opts?.skipAlbumNames ?? [];

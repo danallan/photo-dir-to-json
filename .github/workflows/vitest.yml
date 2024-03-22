@@ -1,26 +1,26 @@
 name: Run tests with coverage, build code, and build docs
 on:
-  push:
-  pull_request:
-    branches: [main]
+    push:
+    pull_request:
+        branches: [main]
 
 jobs:
-  Test-and-Build:
-    timeout-minutes: 60
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-      - name: 'Install node'
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-      - name: 'Install dependencies'
-        run: |
-          corepack enable
-          yarn install --immutable
-      - name: 'Run build'
-        run: yarn build
-      - name: 'Report Coverage'
-        # https://github.com/marketplace/actions/vitest-coverage-report
-        if: always()
-        uses:  davelosert/vitest-coverage-report-action@v2
+    Test-and-Build:
+        timeout-minutes: 60
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v4
+            - name: 'Install node'
+              uses: actions/setup-node@v4
+              with:
+                  node-version: 20
+            - name: 'Install dependencies'
+              run: |
+                  corepack enable
+                  yarn install --immutable
+            - name: 'Run build'
+              run: yarn build
+            - name: 'Report Coverage'
+              # https://github.com/marketplace/actions/vitest-coverage-report
+              if: always()
+              uses: davelosert/vitest-coverage-report-action@v2

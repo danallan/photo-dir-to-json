@@ -61,6 +61,7 @@ collect and emit metadata from your portfolio to your publishing app.
 
 If you provide a JSON file, only `title` is required, all other fields are
 optional:
+
 ```
 {
     "title": "My Album",
@@ -94,6 +95,7 @@ the album directory alongside the photos.
 ## Load a portfolio, specifying a metadata dir
 
 Using this directory structure:
+
 ```
 Portfolio/
   Album1/
@@ -113,12 +115,12 @@ import { Portfolio } from 'photo-dir-to-json';
 const path = '/Volumes/Photos/Portfolio';
 const data = '/Volumes/Photos/Portfolio/metadata';
 new Portfolio(path, {
-  metadataDir: data,
-  skipAlbumNames: ['metadata']
+    metadataDir: data,
+    skipAlbumNames: ['metadata'],
 });
 ```
 
-If you specify a metadata dir, the json file name in that directory *must* match
+If you specify a metadata dir, the json file name in that directory _must_ match
 the album directory name and include a `.json`. In the structure above,
 `Album1.json` is used for `Album1`.
 
@@ -128,7 +130,7 @@ macOS, for example, the file system is not case sensitive by default. So the
 `metadata/album1.json` or `metadata/Album1.json`.
 
 Additionally, you can specify which directories inside of a portfolio should
-*not* be converted into Albums. In this case, since the metadata folder lives
+_not_ be converted into Albums. In this case, since the metadata folder lives
 inside the Portfolio folder, we explicitly skip that directory from Album
 creation with `skipAlbumNames`.
 
@@ -143,7 +145,7 @@ const albumPath = '/Volumes/Photos/Portfolio/Album2';
 const data = '/Volumes/Photos/Portfolio/metadata';
 
 const album = new Album(albumPath, {
-  metadataDir: data,
+    metadataDir: data,
 });
 ```
 
@@ -165,13 +167,13 @@ const portfolio = new Portfolio(path, {
 });
 
 await portfolio.saveAllMetadata((album) => {
-  const filepath = join(output, `${album.slug}.json`);
+    const filepath = join(output, `${album.slug}.json`);
 
-  // create subdirectories in the output dir for slugs that
-  // contain the path separator '/'
-  mkdirSync(dirname(filepath), { recursive: true });
+    // create subdirectories in the output dir for slugs that
+    // contain the path separator '/'
+    mkdirSync(dirname(filepath), { recursive: true });
 
-  return filepath;
+    return filepath;
 });
 ```
 
@@ -189,8 +191,8 @@ import { albumSchemaType, albumSchema } from 'photo-dir-to-json';
 import { readFileSync } from 'fs';
 
 function loadAlbumMetadata(file: string): albumSchemaType {
-  const contents = readFileSync(file, 'utf8');
-  return albumSchema.parse(JSON.parse(contents));
+    const contents = readFileSync(file, 'utf8');
+    return albumSchema.parse(JSON.parse(contents));
 }
 ```
 
@@ -211,7 +213,7 @@ import { albumSchema } from 'photo-dir-to-json';
 const photos = defineCollection({
     type: 'data',
     schema: albumSchema,
-})
+});
 
 export const collections = { photos };
 ```

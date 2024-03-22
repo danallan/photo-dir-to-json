@@ -16,7 +16,7 @@ export class Photo {
      * `/Volume/Photos/Album1/IMG_1234.jpg`
      */
     readonly path: string;
-    private _metadata: photoSchemaType|null = null;
+    private _metadata: photoSchemaType | null = null;
 
     /**
      * Construct a new instance of the Photo class
@@ -24,10 +24,11 @@ export class Photo {
      *   including the photo's filename)
      * @param name - string filename of the photo
      */
-    constructor(dir: string,
+    constructor(
+        dir: string,
         /** The on-disk photo filename, e.g. `IMG_1234.jpg`. */
-        readonly name: string)
-    {
+        readonly name: string
+    ) {
         this.path = resolve(pathJoin(dir, name));
     }
 
@@ -49,7 +50,8 @@ export class Photo {
             let exifFormat = 'yyyy:MM:dd HH:mm:ss.SSS';
 
             // normalize sub-second data to a max of 3 digits
-            const subsec = (tags.exif!['SubSecTimeOriginal']?.description ?? '') + '000';
+            const subsec =
+                (tags.exif!['SubSecTimeOriginal']?.description ?? '') + '000';
             let timestamp = `${exifDateTag.description}.${subsec.substring(0, 3)}`;
 
             // add timezone offset if available. typical format: "±HH:MM"
@@ -61,12 +63,10 @@ export class Photo {
             }
 
             date = parseDate(timestamp, exifFormat, new Date());
-        }
-        else if (xmpDateTag) {
+        } else if (xmpDateTag) {
             // comes in a modified ISO-8601 form already
             date = parseISO(xmpDateTag.description);
-        }
-        else if (iptcDateTag) {
+        } else if (iptcDateTag) {
             /*
              * https://iptc.org/std/IIM/4.2/specification/IIMV4.2.pdf
              * DateCreated:
@@ -85,28 +85,30 @@ export class Photo {
             const timecreated = tags.iptc!['Time Created']?.description ?? '';
             const timestamp = `${iptcDateTag.description}T${timecreated}`;
             date = parseISO(timestamp);
-        }
-        else {
-            console.warn(`WARNING: Cannot read create date from metadata in ` +
-                        `${this.path}, using file creation time instead`);
+        } else {
+            console.warn(
+                `WARNING: Cannot read create date from metadata in ` +
+                    `${this.path}, using file creation time instead`
+            );
             // alias birthtime from stat object as date
             ({ birthtime: date } = statSync(this.path));
         }
         return date;
     }
 
-    private _getDimensions(tags: exifreader.ExpandedTags): {width: number, height: number} {
+    private _getDimensions(tags: exifreader.ExpandedTags): {
+        width: number;
+        height: number;
+    } {
         let width, height;
 
         if (tags.riff) {
             width = tags.riff['ImageWidth']!;
             height = tags.riff['ImageHeight']!;
-        }
-        else if (tags.pngFile) {
+        } else if (tags.pngFile) {
             width = tags.pngFile['Image Width']!;
             height = tags.pngFile['Image Height']!;
-        }
-        else {
+        } else {
             width = tags.file!['Image Width']!;
             height = tags.file!['Image Height']!;
         }
@@ -120,7 +122,9 @@ export class Photo {
      * @param tags - Expanded Tags object from exifreader
      * @returns XMP-dc:identifier string, if present, else undefined
      */
-    private _getXmpIdentifier(tags: exifreader.ExpandedTags): string|undefined {
+    private _getXmpIdentifier(
+        tags: exifreader.ExpandedTags
+    ): string | undefined {
         return tags.xmp?.identifier?.description;
     }
 
@@ -130,7 +134,9 @@ export class Photo {
      * @param tags - Expanded Tags object from exifreader
      * @returns XMP-dc:description string, if present, else undefined
      */
-    private _getXmpDescription(tags: exifreader.ExpandedTags): string|undefined {
+    private _getXmpDescription(
+        tags: exifreader.ExpandedTags
+    ): string | undefined {
         return tags.xmp?.description?.description;
     }
 
@@ -183,14 +189,12 @@ export class Photo {
      *  the image
      */
     public async metadata(): Promise<photoSchemaType> {
-        if (this._metadata)
-            return this._metadata;
+        if (this._metadata) return this._metadata;
 
         let tags;
         try {
-            tags = await exifreader.load(this.path, {expanded: true});
-        }
-        catch (_) {
+            tags = await exifreader.load(this.path, { expanded: true });
+        } catch (_) {
             throw new Error(`Invalid image format: ${this.path}`);
         }
 
@@ -212,5 +216,4 @@ export class Photo {
 
         return this._metadata;
     }
-
 }

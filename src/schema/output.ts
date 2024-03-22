@@ -25,15 +25,17 @@ import { metadataSchema } from './metadata.js';
  * ```
  * @public
  */
-export const photoSchema = z.object({
-    filename: z.string(),
-    date: z.string(),
-    landscape: z.boolean(),
-    width: z.number(),
-    height: z.number(),
-    id: z.string().optional(),
-    alt: z.string().optional(),
-}).strict();
+export const photoSchema = z
+    .object({
+        filename: z.string(),
+        date: z.string(),
+        landscape: z.boolean(),
+        width: z.number(),
+        height: z.number(),
+        id: z.string().optional(),
+        alt: z.string().optional(),
+    })
+    .strict();
 
 /**
  * A TypeScript type of {@link photoSchema}.
@@ -88,11 +90,13 @@ export type photoSchemaType = z.infer<typeof photoSchema>;
  * ```
  * @public
  */
-export const albumSchema = metadataSchema.extend({
-    unlisted: z.boolean(),
-    slug: z.string(),
-    photos: z.array(photoSchema),
-}).strict();
+export const albumSchema = metadataSchema
+    .extend({
+        unlisted: z.boolean(),
+        slug: z.string(),
+        photos: z.array(photoSchema),
+    })
+    .strict();
 
 /**
  * A TypeScript type of {@link albumSchema}.

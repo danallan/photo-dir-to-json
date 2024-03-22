@@ -4,7 +4,7 @@ import {
     albumSchemaType,
     photoSchemaType,
     metadataSchema,
-    metadataSchemaType
+    metadataSchemaType,
 } from './schema/index.js';
 import { existsSync, readFileSync, writeFileSync } from 'fs';
 import { join as pathJoin, extname } from 'path';
@@ -12,27 +12,27 @@ import { join as pathJoin, extname } from 'path';
 /**
  * Optional album configuration.
  * @public
-*/
+ */
 export interface AlbumOptions {
     /** The path to a directory containing album metadata file.
-      * If this is specified, the metadata file is assumed to match the album's
-      * directory name. This cannot be specified with `metadataFile`.
-      */
-    metadataDir?: string,
+     * If this is specified, the metadata file is assumed to match the album's
+     * directory name. This cannot be specified with `metadataFile`.
+     */
+    metadataDir?: string;
     /** The name of the metadata file inside of the album directory. E.g.,
-      * `_metadata.json`. This cannot be specified with `metadataDir`.
-      */
-    metadataFile?: string,
+     * `_metadata.json`. This cannot be specified with `metadataDir`.
+     */
+    metadataFile?: string;
     /** A list of case-insensitive extensions to match photo files inside the
-      * album. The files must be supported by
-      * {@link https://github.com/mattiasw/ExifReader#readme | ExifReader}
-      * library. Default: ['jpg', 'jpeg', 'png', 'webp']
-      */
-    allowedExtensions?: string[],
+     * album. The files must be supported by
+     * {@link https://github.com/mattiasw/ExifReader#readme | ExifReader}
+     * library. Default: ['jpg', 'jpeg', 'png', 'webp']
+     */
+    allowedExtensions?: string[];
     /** Suppress warnings for files that are skipped in the album with these
-      * case-insensitive extensions. Default: ['json', 'ds_store']
-      */
-    skippedExtensions?: string[],
+     * case-insensitive extensions. Default: ['json', 'ds_store']
+     */
+    skippedExtensions?: string[];
 }
 
 /**
@@ -64,22 +64,28 @@ export class Album {
         // prefix all extensions with a period to properly compare againt
         // result of path.extname()
         const allow = opts.allowedExtensions ?? ['jpg', 'jpeg', 'png', 'webp'];
-        this._allowedExtensions = new Set(allow.map(e => `.${e.toLowerCase()}`));
+        this._allowedExtensions = new Set(
+            allow.map((e) => `.${e.toLowerCase()}`)
+        );
 
         const skip = opts.skippedExtensions ?? ['json', 'ds_store'];
-        this._skippedExtensions = new Set(skip.map(e => `.${e.toLowerCase()}`));
+        this._skippedExtensions = new Set(
+            skip.map((e) => `.${e.toLowerCase()}`)
+        );
 
         if (opts.metadataDir && opts.metadataFile)
-            throw new Error("Error: cannot specify both `metadataDir` and `metadataFile` in AlbumOptions");
+            throw new Error(
+                'Error: cannot specify both `metadataDir` and `metadataFile` in AlbumOptions'
+            );
 
         // try to load metadata from specified place, if unspecified set default
-        let metadataFile: string|null = null;
+        let metadataFile: string | null = null;
         if (opts.metadataDir)
             metadataFile = pathJoin(opts.metadataDir, `${this.name}.json`);
         if (opts.metadataFile)
             metadataFile = pathJoin(this.path, opts.metadataFile);
 
-        this._metadata = (metadataFile)
+        this._metadata = metadataFile
             ? this._loadMetadata(metadataFile)
             : { title: this.name };
 
@@ -88,20 +94,24 @@ export class Album {
         }
 
         if (this._metadata.order) {
-            this._metadata.order.forEach(file => {
+            this._metadata.order.forEach((file) => {
                 this._validateFileIsPresent(file, 'Order file');
-            })
+            });
         }
     }
 
     private _validateFileIsPresent(filename: string, kind: string) {
         if (!this._allowedExtensions.has(extname(filename))) {
             const exts = Array.from(this._allowedExtensions).join(',');
-            throw new Error(`${kind} excluded: ${filename} in album ${this.name} not in allowedExtensions: [${exts}]`);
+            throw new Error(
+                `${kind} excluded: ${filename} in album ${this.name} not in allowedExtensions: [${exts}]`
+            );
         }
 
         if (!existsSync(pathJoin(this.path, filename))) {
-            throw new Error(`${kind} not found: ${filename} in album ${this.name}`);
+            throw new Error(
+                `${kind} not found: ${filename} in album ${this.name}`
+            );
         }
     }
 
@@ -123,10 +133,11 @@ export class Album {
      */
     private _selectOnlyPhotos(filename: string) {
         const extension = extname(filename).toLowerCase();
-        if (this._allowedExtensions.has(extension))
-            return true;
+        if (this._allowedExtensions.has(extension)) return true;
         if (!this._skippedExtensions.has(extension))
-            console.error(`WARNING: skipping file ${filename} in album ${this.name}`);
+            console.error(
+                `WARNING: skipping file ${filename} in album ${this.name}`
+            );
         return false;
     }
 
@@ -140,9 +151,10 @@ export class Album {
      */
     get photos(): Photo[] {
         if (this._photos === null) {
-            this._photos = this._directory.getFilesSync()
-                .filter(f => this._selectOnlyPhotos(f))
-                .map(f => new Photo(this.path, f));
+            this._photos = this._directory
+                .getFilesSync()
+                .filter((f) => this._selectOnlyPhotos(f))
+                .map((f) => new Photo(this.path, f));
         }
         return this._photos;
     }
@@ -198,7 +210,7 @@ export class Album {
             slug: this.slug,
             unlisted: this.unlisted,
             photos,
-        }
+        };
     }
 
     /**
