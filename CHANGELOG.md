@@ -1,5 +1,18 @@
 
 
+## [1.2.0](https://github.com/danallan/photo-dir-to-json/compare/1.1.0...1.2.0) (2024-03-22)
+
+
+### Features
+
+* Add optional id and alt photo properties from XMP metadata ([5c9a4b6](https://github.com/danallan/photo-dir-to-json/commit/5c9a4b6fec473993669d62261684c09b878e62b2))
+* Add order property to input metadata ([e90823c](https://github.com/danallan/photo-dir-to-json/commit/e90823c1415510f25dd2276c29f89e70b2422511))
+
+
+### Bug Fixes
+
+* Ensure album thumb file is in set of allowedExtensions ([1c609b2](https://github.com/danallan/photo-dir-to-json/commit/1c609b2f090a3454e4cddc1fa6ea601e855604e6))
+
 ## [1.1.0](https://github.com/danallan/photo-dir-to-json/compare/1.0.2...1.1.0) (2024-03-18)
 
 
