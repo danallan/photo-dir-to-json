@@ -1,0 +1,13 @@
+# temporary build items
+dist/
+node_modules/
+temp/
+build/
+coverage/
+
+# yarn
+.yarn/
+
+# auto-generated
+docs/
+CHANGELOG.md

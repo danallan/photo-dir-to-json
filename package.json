@@ -12,8 +12,10 @@
         "clean": "rm -r dist",
         "release": "release-it",
         "lint": "eslint . --max-warnings 0",
+        "format": "prettier . --write",
+        "format:check": "prettier . --check",
         "test": "vitest",
-        "test:ci": "yarn lint && vitest run --coverage"
+        "test:ci": "yarn lint && yarn format:check && vitest run --coverage"
     },
     "dependencies": {
         "date-fns": "^3.6.0",
@@ -29,7 +31,9 @@
         "@types/node": "^20.11.30",
         "@vitest/coverage-v8": "^1.4.0",
         "eslint": "^8.57.0",
+        "eslint-config-prettier": "^9.1.0",
         "esrun": "^3.2.26",
+        "prettier": "3.2.5",
         "release-it": "^17.1.1",
         "typescript": "^5.4.3",
         "typescript-eslint": "^7.3.1",
