@@ -65,10 +65,11 @@ export type photoSchemaType = z.infer<typeof photoSchema>;
  * {
  *   "title": "My Album",
  *   "description": "An album of photos",
- *   "thumb": "IMG_1234.jpg",
+ *   "thumb": "IMG_2851.jpg",
  *   "slug": "my-album",
  *   "unlisted": "false",
  *   "keywords": ["array of keywords", "landscapes", "art"],
+ *   "order": ["IMG_2944.jpg", "IMG_2851.jpg"],
  *   "photos": [{
  *     "filename": "IMG_2851.jpg",
  *     "date": "2009-12-09T00:33:19.000Z",

@@ -127,6 +127,19 @@ describe('metadata', () => {
         expect(() => { new Album(albumdir, opts) }).toThrow(/Thumb excluded/);
     });
 
+    test('throws error when order specified but a file is not found', ({ expect }) => {
+        const opts = { metadataFile: '_metadata-missing_order.json' };
+        expect(() => { new Album(albumdir, opts) }).toThrow(/Order file not found/);
+    })
+
+    test('throws error when order specified but extension not allowed', ({ expect }) => {
+        const opts = {
+            metadataFile: '_metadata-minimal_order.json',
+            allowedExtensions: []
+        };
+        expect(() => { new Album(albumdir, opts) }).toThrow(/Order file excluded/);
+    })
+
     test('throws error when metadata file has extra property', ({ expect }) => {
         const opts = { metadataFile: '_metadata-strict.json' };
         expect(() => { new Album(albumdir, opts) }).toThrow(/unrecognized_keys/)

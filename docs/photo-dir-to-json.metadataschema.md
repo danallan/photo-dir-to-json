@@ -16,6 +16,7 @@ metadataSchema: z.ZodObject<{
     slug: z.ZodOptional<z.ZodString>;
     unlisted: z.ZodOptional<z.ZodBoolean>;
     keywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    order: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
 }, "strict", z.ZodTypeAny, {
     title: string;
     description?: string | undefined;
@@ -23,6 +24,7 @@ metadataSchema: z.ZodObject<{
     slug?: string | undefined;
     unlisted?: boolean | undefined;
     keywords?: string[] | undefined;
+    order?: string[] | undefined;
 }, {
     title: string;
     description?: string | undefined;
@@ -30,6 +32,7 @@ metadataSchema: z.ZodObject<{
     slug?: string | undefined;
     unlisted?: boolean | undefined;
     keywords?: string[] | undefined;
+    order?: string[] | undefined;
 }>
 ```
 
@@ -37,7 +40,9 @@ metadataSchema: z.ZodObject<{
 
 JSON files that conform to this schema should be stored alongside or near albums on disk. You can use the schema and corresponding type in your own applications if you'd like to easily write scripts that conform to the spec, or use this information to hand-write your own.
 
-If specified, the Album class will validate that the `thumb` value is actually a file that exists in the album directory.
+If specified, the Album class will validate that the `thumb` value is actually a file that exists in the album directory with an extension that is specified in [AlbumOptions.allowedExtensions](./photo-dir-to-json.albumoptions.md)<!-- -->.
+
+Similarly, if specified, the Album class will validate that all items in the `order` array are files that exist in the album directory with exensions specified in [AlbumOptions.allowedExtensions](./photo-dir-to-json.albumoptions.md)<!-- -->. It is not required for you to specify all or even any of the photos in the `order` property. Your downstream app should handle a partially defined ordering accordingly.
 
 All remaining metadata has no meaning to this library and it is intended to just collect and emit metadata from your portfolio to your publishing app.
 
@@ -54,7 +59,8 @@ Contents of a metadata json file validated with this schema
   "thumb": "IMG_1234.jpg",
   "slug": "my-album",
   "unlisted": "false",
-  "keywords": ["array of keywords", "landscapes", "art"]
+  "keywords": ["array of keywords", "landscapes", "art"],
+  "order": ["IMG_7890.jpg", "IMG_1234.jpg"]
 }
 ```
 

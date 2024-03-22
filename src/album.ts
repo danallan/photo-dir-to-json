@@ -86,6 +86,12 @@ export class Album {
         if (this._metadata.thumb) {
             this._validateFileIsPresent(this._metadata.thumb, 'Thumb');
         }
+
+        if (this._metadata.order) {
+            this._metadata.order.forEach(file => {
+                this._validateFileIsPresent(file, 'Order file');
+            })
+        }
     }
 
     private _validateFileIsPresent(filename: string, kind: string) {

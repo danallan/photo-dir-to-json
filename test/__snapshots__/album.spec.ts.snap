@@ -7,6 +7,9 @@ exports[`metadata > full from dir matches snapshot 1`] = `
     "no photos here",
     "test",
   ],
+  "order": [
+    "IMG_1234.jpg",
+  ],
   "photos": [
     {
       "date": "2023-01-01T08:00:01.000Z",
@@ -29,6 +32,9 @@ exports[`metadata > full from file matches snapshot 1`] = `
   "keywords": [
     "no photos here",
     "test",
+  ],
+  "order": [
+    "IMG_1234.jpg",
   ],
   "photos": [
     {

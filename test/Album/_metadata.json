@@ -4,5 +4,6 @@
     "thumb": "IMG_1234.jpg",
     "slug": "/path/and-a-slug-title",
     "unlisted": true,
-    "keywords": ["no photos here", "test"]
+    "keywords": ["no photos here", "test"],
+    "order": ["IMG_1234.jpg"]
 }

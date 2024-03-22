@@ -4,5 +4,6 @@
     "thumb": "IMG_1234.jpg",
     "slug": "metadata-from-dir",
     "unlisted": false,
-    "keywords": ["no photos here", "test"]
+    "keywords": ["no photos here", "test"],
+    "order": ["IMG_1234.jpg"]
 }

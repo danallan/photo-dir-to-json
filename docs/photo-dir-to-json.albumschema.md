@@ -16,6 +16,7 @@ albumSchema: z.ZodObject<{
     description: z.ZodOptional<z.ZodString>;
     thumb: z.ZodOptional<z.ZodString>;
     keywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+    order: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     unlisted: z.ZodBoolean;
     slug: z.ZodString;
     photos: z.ZodArray<z.ZodObject<{
@@ -59,6 +60,7 @@ albumSchema: z.ZodObject<{
     description?: string | undefined;
     thumb?: string | undefined;
     keywords?: string[] | undefined;
+    order?: string[] | undefined;
 }, {
     title: string;
     slug: string;
@@ -75,6 +77,7 @@ albumSchema: z.ZodObject<{
     description?: string | undefined;
     thumb?: string | undefined;
     keywords?: string[] | undefined;
+    order?: string[] | undefined;
 }>
 ```
 
@@ -96,10 +99,11 @@ Sample output JSON file
 {
   "title": "My Album",
   "description": "An album of photos",
-  "thumb": "IMG_1234.jpg",
+  "thumb": "IMG_2851.jpg",
   "slug": "my-album",
   "unlisted": "false",
   "keywords": ["array of keywords", "landscapes", "art"],
+  "order": ["IMG_2944.jpg", "IMG_2851.jpg"],
   "photos": [{
     "filename": "IMG_2851.jpg",
     "date": "2009-12-09T00:33:19.000Z",

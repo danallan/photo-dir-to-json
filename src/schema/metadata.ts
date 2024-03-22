@@ -9,7 +9,15 @@ import * as z from 'zod';
  * or use this information to hand-write your own.
  *
  * If specified, the Album class will validate that the `thumb` value is
- * actually a file that exists in the album directory.
+ * actually a file that exists in the album directory with an extension that is
+ * specified in {@link AlbumOptions | AlbumOptions.allowedExtensions}.
+ *
+ * Similarly, if specified, the Album class will validate that all items in the
+ * `order` array are files that exist in the album directory with exensions
+ * specified in {@link AlbumOptions | AlbumOptions.allowedExtensions}. It is not
+ * required for you to specify all or even any of the photos in the `order`
+ * property. Your downstream app should handle a partially defined ordering
+ * accordingly.
  *
  * All remaining metadata has no meaning to this library and it is intended to
  * just collect and emit metadata from your portfolio to your publishing app.
@@ -24,7 +32,8 @@ import * as z from 'zod';
  *   "thumb": "IMG_1234.jpg",
  *   "slug": "my-album",
  *   "unlisted": "false",
- *   "keywords": ["array of keywords", "landscapes", "art"]
+ *   "keywords": ["array of keywords", "landscapes", "art"],
+ *   "order": ["IMG_7890.jpg", "IMG_1234.jpg"]
  * }
  * ```
  * @public
@@ -38,7 +47,10 @@ export const metadataSchema = z.object({
     slug: z.string().optional(),
     /** an unlisted album is published but not linked to */
     unlisted: z.boolean().optional(),
+    /** album-wide keywords for SEO */
     keywords: z.array(z.string()).optional(),
+    /** list of image filenames for custom ordering */
+    order: z.array(z.string()).optional(),
 }).strict();
 
 /**
