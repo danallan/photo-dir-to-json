@@ -109,7 +109,7 @@ describe('metadata', () => {
         expect(album.unlisted).toBe(true);
     });
 
-    test('throws error when thumb specified but file not found', ({ expect }) => {
+    test('throws error when title missing from metadata', ({ expect }) => {
         const opts = { metadataFile: '_metadata-missing_title.json' };
         expect(() => { new Album(albumdir, opts) }).toThrow(/Required/);
     });
@@ -117,6 +117,14 @@ describe('metadata', () => {
     test('throws error when thumb specified but file not found', ({ expect }) => {
         const opts = { metadataFile: '_metadata-missing_thumb.json' };
         expect(() => { new Album(albumdir, opts) }).toThrow(/Thumb not found/);
+    });
+
+    test('throws error when thumb specified but extension not allowed', ({ expect }) => {
+        const opts = {
+            metadataFile: '_metadata.json',
+            allowedExtensions: []
+        };
+        expect(() => { new Album(albumdir, opts) }).toThrow(/Thumb excluded/);
     });
 
     test('throws error when metadata file has extra property', ({ expect }) => {

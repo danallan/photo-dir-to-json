@@ -83,9 +83,20 @@ export class Album {
             ? this._loadMetadata(metadataFile)
             : { title: this.name };
 
-        // verify the thumb exists in this album
-        if (this._metadata.thumb && !existsSync(pathJoin(this.path, this._metadata.thumb)))
-            throw new Error(`Thumb not found: ${this._metadata.thumb} in album ${this.name}`);
+        if (this._metadata.thumb) {
+            this._validateFileIsPresent(this._metadata.thumb, 'Thumb');
+        }
+    }
+
+    private _validateFileIsPresent(filename: string, kind: string) {
+        if (!this._allowedExtensions.has(extname(filename))) {
+            const exts = Array.from(this._allowedExtensions).join(',');
+            throw new Error(`${kind} excluded: ${filename} in album ${this.name} not in allowedExtensions: [${exts}]`);
+        }
+
+        if (!existsSync(pathJoin(this.path, filename))) {
+            throw new Error(`${kind} not found: ${filename} in album ${this.name}`);
+        }
     }
 
     /**
