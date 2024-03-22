@@ -11,8 +11,9 @@
         "build": "yarn test:ci && tsc && yarn build:docs",
         "clean": "rm -r dist",
         "release": "release-it",
+        "lint": "eslint . --max-warnings 0",
         "test": "vitest",
-        "test:ci": "vitest run --coverage"
+        "test:ci": "yarn lint && vitest run --coverage"
     },
     "dependencies": {
         "date-fns": "^3.6.0",
@@ -24,11 +25,14 @@
         "@microsoft/api-extractor": "^7.43.0",
         "@release-it/conventional-changelog": "^8.0.1",
         "@tsconfig/node20": "^20.1.2",
+        "@types/eslint": "^8",
         "@types/node": "^20.11.30",
         "@vitest/coverage-v8": "^1.4.0",
+        "eslint": "^8.57.0",
         "esrun": "^3.2.26",
         "release-it": "^17.1.1",
         "typescript": "^5.4.3",
+        "typescript-eslint": "^7.3.1",
         "vitest": "^1.4.0"
     },
     "main": "dist/index.js",

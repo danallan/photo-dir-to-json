@@ -208,7 +208,7 @@ export class Album {
      * @public
      */
     public async metadata(): Promise<albumSchemaType> {
-        let photos: photoSchemaType[] = [];
+        const photos: photoSchemaType[] = [];
         for (const photo of this.photos) {
             photos.push(await photo.metadata());
         }
