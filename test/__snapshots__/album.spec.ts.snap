@@ -18,6 +18,13 @@ exports[`metadata > full from dir matches snapshot 1`] = `
       "landscape": false,
       "width": 16,
     },
+    {
+      "date": "2023-01-01T10:00:01.000Z",
+      "filename": "IMG_5678.webp",
+      "height": 16,
+      "landscape": false,
+      "width": 16,
+    },
   ],
   "slug": "metadata-from-dir",
   "thumb": "IMG_1234.jpg",
@@ -34,12 +41,20 @@ exports[`metadata > full from file matches snapshot 1`] = `
     "test",
   ],
   "order": [
+    "IMG_5678.webp",
     "IMG_1234.jpg",
   ],
   "photos": [
     {
       "date": "2023-01-01T08:00:01.000Z",
       "filename": "IMG_1234.jpg",
+      "height": 16,
+      "landscape": false,
+      "width": 16,
+    },
+    {
+      "date": "2023-01-01T10:00:01.000Z",
+      "filename": "IMG_5678.webp",
       "height": 16,
       "landscape": false,
       "width": 16,

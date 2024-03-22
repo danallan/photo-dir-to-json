@@ -134,11 +134,11 @@ describe('metadata', () => {
 
     test('throws error when order specified but extension not allowed', ({ expect }) => {
         const opts = {
-            metadataFile: '_metadata-minimal_order.json',
-            allowedExtensions: []
+            metadataFile: '_metadata.json',
+            allowedExtensions: ['jpg']
         };
         expect(() => { new Album(albumdir, opts) }).toThrow(/Order file excluded/);
-    })
+    });
 
     test('throws error when metadata file has extra property', ({ expect }) => {
         const opts = { metadataFile: '_metadata-strict.json' };
@@ -174,7 +174,7 @@ test('saveMetadata() writes valid JSON', async ({ expect }) => {
 
     // sanity check
     expect(written.title).toBe(album.title);
-    expect(written.photos.length).toBe(1);
+    expect(written.photos.length).toBe(2);
 
     // cleanup
     rmSync(json);

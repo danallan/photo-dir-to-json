@@ -5,5 +5,5 @@
     "slug": "/path/and-a-slug-title",
     "unlisted": true,
     "keywords": ["no photos here", "test"],
-    "order": ["IMG_1234.jpg"]
+    "order": ["IMG_5678.webp", "IMG_1234.jpg"]
 }
