@@ -224,6 +224,53 @@ See [API
 documentation](https://github.com/danallan/photo-dir-to-json/blob/main/docs/photo-dir-to-json.md)
 for more information and more examples.
 
+# Making changes
+
+## Getting started
+
+1. Install [asdf Runtime Version Manager](https://asdf-vm.com/).
+
+2. Check your asdf install is working and that you are using the version of Node
+   specified in [`.tool-versions`
+   file](https://github.com/danallan/photo-dir-to-json/blob/main/.tool-versions)
+   with:
+
+    ```
+    asdf current
+    ```
+
+3. Enable `yarn`:
+
+    ```
+    corepack enable
+    asdf reshim nodejs
+    ```
+
+4. Install dependencies:
+
+    ```
+    yarn
+    ```
+
+5. Check everything is working by running tests:
+
+    ```
+    yarn test:ci
+    ```
+
+## Command list
+
+| Command             | Action                                       |
+| :------------------ | :------------------------------------------- |
+| `yarn build`        | Run `test:ci`, compile, and build API docs   |
+| `yarn build:docs`   | Auto-generate API docs in `docs/` directory  |
+| `yarn lint`         | Run `typescript-eslint`                      |
+| `yarn format`       | Run `Prettier` to format all files           |
+| `yarn format:check` | Check for formatting issues without writing  |
+| `yarn test`         | Run tests in watch mode                      |
+| `yarn test:ci`      | Lint, format check, tests, and coverage      |
+| `yarn release`      | Run release-it to publish new version to NPM |
+
 # License
 
 [MIT
