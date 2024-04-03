@@ -14,25 +14,233 @@ export declare class Album
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(path, options)](./photo-dir-to-json.album._constructor_.md) |  | Constructs a new instance of the <code>Album</code> class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(path, options)](./photo-dir-to-json.album._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Constructs a new instance of the `Album` class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [name](./photo-dir-to-json.album.name.md) | <code>readonly</code> | string | The on-disk name of the album's directory. If the path is <code>/Volume/Photos/Album1</code> the name is <code>Album1</code>. |
-|  [path](./photo-dir-to-json.album.path.md) | <code>readonly</code> | string | On-disk absolute path to the album, e.g. <code>/Volume/Photos/Album1</code>. |
-|  [photos](./photo-dir-to-json.album.photos.md) | <code>readonly</code> | [Photo](./photo-dir-to-json.photo.md)<!-- -->\[\] | List of Photo classes for all images found in the album path. Only files with extensions from [\`allowedExtensions\` property](./photo-dir-to-json.albumoptions.md) are processed, all others are ignored. Any ignored file extensions not specified in [\`skippedExtensions\` property](./photo-dir-to-json.albumoptions.md) prints a warning to the console notifying you that they were skipped. |
-|  [slug](./photo-dir-to-json.album.slug.md) | <code>readonly</code> | string | The <code>slug</code> field defined in the Album metadata, defaulting to the Album's on-disk directory name lower cased. For example, if the slug is not specified in the input metadata, the slug for an album located at <code>/Volume/Photos/Album1</code> becomes <code>album1</code>. |
-|  [title](./photo-dir-to-json.album.title.md) | <code>readonly</code> | string | By default, album title is the album directory name but is overridden by the <code>title</code> property in album metadata when supplied. |
-|  [unlisted](./photo-dir-to-json.album.unlisted.md) | <code>readonly</code> | boolean | Returns <code>true</code> if and only if the Album metadata defines the unlisted property as <code>true</code>. |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[name](./photo-dir-to-json.album.name.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The on-disk name of the album's directory. If the path is `/Volume/Photos/Album1` the name is `Album1`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[path](./photo-dir-to-json.album.path.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+On-disk absolute path to the album, e.g. `/Volume/Photos/Album1`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[photos](./photo-dir-to-json.album.photos.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+[Photo](./photo-dir-to-json.photo.md)<!-- -->\[\]
+
+
+</td><td>
+
+List of Photo classes for all images found in the album path. Only files with extensions from [\`allowedExtensions\` property](./photo-dir-to-json.albumoptions.md) are processed, all others are ignored. Any ignored file extensions not specified in [\`skippedExtensions\` property](./photo-dir-to-json.albumoptions.md) prints a warning to the console notifying you that they were skipped.
+
+
+</td></tr>
+<tr><td>
+
+[slug](./photo-dir-to-json.album.slug.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The `slug` field defined in the Album metadata, defaulting to the Album's on-disk directory name lower cased. For example, if the slug is not specified in the input metadata, the slug for an album located at `/Volume/Photos/Album1` becomes `album1`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[title](./photo-dir-to-json.album.title.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+By default, album title is the album directory name but is overridden by the `title` property in album metadata when supplied.
+
+
+</td></tr>
+<tr><td>
+
+[unlisted](./photo-dir-to-json.album.unlisted.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+boolean
+
+
+</td><td>
+
+Returns `true` if and only if the Album metadata defines the unlisted property as `true`<!-- -->.
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [metadata()](./photo-dir-to-json.album.metadata.md) |  | Returns the full metadata for the album including all photos inside. |
-|  [saveMetadata(file)](./photo-dir-to-json.album.savemetadata.md) |  | Write the Album's generated metadata to a JSON file on disk. Please ensure the directories exist and the caller has permissions to write to the path. The file at the specified path will be overwritten if it exists. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[metadata()](./photo-dir-to-json.album.metadata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Returns the full metadata for the album including all photos inside.
+
+
+</td></tr>
+<tr><td>
+
+[saveMetadata(file)](./photo-dir-to-json.album.savemetadata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Write the Album's generated metadata to a JSON file on disk. Please ensure the directories exist and the caller has permissions to write to the path. The file at the specified path will be overwritten if it exists.
+
+
+</td></tr>
+</tbody></table>

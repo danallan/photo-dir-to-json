@@ -14,10 +14,101 @@ export interface AlbumOptions
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [allowedExtensions?](./photo-dir-to-json.albumoptions.allowedextensions.md) |  | string\[\] | _(Optional)_ A list of case-insensitive extensions to match photo files inside the album. The files must be supported by [ExifReader](https://github.com/mattiasw/ExifReader#readme) library. Default: \['jpg', 'jpeg', 'png', 'webp'\] |
-|  [metadataDir?](./photo-dir-to-json.albumoptions.metadatadir.md) |  | string | _(Optional)_ The path to a directory containing album metadata file. If this is specified, the metadata file is assumed to match the album's directory name. This cannot be specified with <code>metadataFile</code>. |
-|  [metadataFile?](./photo-dir-to-json.albumoptions.metadatafile.md) |  | string | _(Optional)_ The name of the metadata file inside of the album directory. E.g., <code>_metadata.json</code>. This cannot be specified with <code>metadataDir</code>. |
-|  [skippedExtensions?](./photo-dir-to-json.albumoptions.skippedextensions.md) |  | string\[\] | _(Optional)_ Suppress warnings for files that are skipped in the album with these case-insensitive extensions. Default: \['json', 'ds\_store'\] |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[allowedExtensions?](./photo-dir-to-json.albumoptions.allowedextensions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ A list of case-insensitive extensions to match photo files inside the album. The files must be supported by [ExifReader](https://github.com/mattiasw/ExifReader#readme) library. Default: \['jpg', 'jpeg', 'png', 'webp'\]
+
+
+</td></tr>
+<tr><td>
+
+[metadataDir?](./photo-dir-to-json.albumoptions.metadatadir.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The path to a directory containing album metadata file. If this is specified, the metadata file is assumed to match the album's directory name. This cannot be specified with `metadataFile`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[metadataFile?](./photo-dir-to-json.albumoptions.metadatafile.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+_(Optional)_ The name of the metadata file inside of the album directory. E.g., `_metadata.json`<!-- -->. This cannot be specified with `metadataDir`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[skippedExtensions?](./photo-dir-to-json.albumoptions.skippedextensions.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ Suppress warnings for files that are skipped in the album with these case-insensitive extensions. Default: \['json', 'ds\_store'\]
+
+
+</td></tr>
+</tbody></table>

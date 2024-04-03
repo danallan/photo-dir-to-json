@@ -14,10 +14,39 @@ saveMetadata(file: string): Promise<void>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  file | string | full file path of JSON file to write |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+file
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+full file path of JSON file to write
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;void&gt;

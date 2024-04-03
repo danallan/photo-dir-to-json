@@ -15,8 +15,52 @@ constructor(dir: string,
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  dir | string | string directory of the album containing the photo (not including the photo's filename) |
-|  name | string | string filename of the photo |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+dir
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+string directory of the album containing the photo (not including the photo's filename)
+
+
+</td></tr>
+<tr><td>
+
+name
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+string filename of the photo
+
+
+</td></tr>
+</tbody></table>

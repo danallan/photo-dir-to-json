@@ -14,20 +14,135 @@ export declare class Photo
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(dir, name)](./photo-dir-to-json.photo._constructor_.md) |  | Construct a new instance of the Photo class |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(dir, name)](./photo-dir-to-json.photo._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Construct a new instance of the Photo class
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [name](./photo-dir-to-json.photo.name.md) | <code>readonly</code> | string | The on-disk photo filename, e.g. <code>IMG_1234.jpg</code>. |
-|  [path](./photo-dir-to-json.photo.path.md) | <code>readonly</code> | string | On-disk absolute path to the file, e.g. <code>/Volume/Photos/Album1/IMG_1234.jpg</code> |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[name](./photo-dir-to-json.photo.name.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The on-disk photo filename, e.g. `IMG_1234.jpg`<!-- -->.
+
+
+</td></tr>
+<tr><td>
+
+[path](./photo-dir-to-json.photo.path.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+On-disk absolute path to the file, e.g. `/Volume/Photos/Album1/IMG_1234.jpg`
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [metadata()](./photo-dir-to-json.photo.metadata.md) |  | Asynchronously compute the [photoSchema](./photo-dir-to-json.photoschema.md) metadata for the image. The data is processed once and cached, so multiple executions will emit the same data. Date is fetched first from metadata and falls back to on-disk creation time if not available, see remarks. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[metadata()](./photo-dir-to-json.photo.metadata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Asynchronously compute the [photoSchema](./photo-dir-to-json.photoschema.md) metadata for the image. The data is processed once and cached, so multiple executions will emit the same data. Date is fetched first from metadata and falls back to on-disk creation time if not available, see remarks.
+
+
+</td></tr>
+</tbody></table>

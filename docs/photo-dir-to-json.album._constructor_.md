@@ -14,8 +14,52 @@ constructor(path: string, options?: AlbumOptions);
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  path | string | The on-disk path to the album |
-|  options | [AlbumOptions](./photo-dir-to-json.albumoptions.md) | _(Optional)_ Optionally specify the location of album metadata file and override default extensions used for including photos |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+path
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+The on-disk path to the album
+
+
+</td></tr>
+<tr><td>
+
+options
+
+
+</td><td>
+
+[AlbumOptions](./photo-dir-to-json.albumoptions.md)
+
+
+</td><td>
+
+_(Optional)_ Optionally specify the location of album metadata file and override default extensions used for including photos
+
+
+</td></tr>
+</tbody></table>

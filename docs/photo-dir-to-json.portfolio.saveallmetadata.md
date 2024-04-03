@@ -14,10 +14,39 @@ saveAllMetadata(computePath: (a: Album) => string): Promise<void>;
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  computePath | (a: [Album](./photo-dir-to-json.album.md)<!-- -->) =&gt; string | a function that accepts an Album parameter and returns the full path where the album's JSON metadata will be written. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+computePath
+
+
+</td><td>
+
+(a: [Album](./photo-dir-to-json.album.md)<!-- -->) =&gt; string
+
+
+</td><td>
+
+a function that accepts an Album parameter and returns the full path where the album's JSON metadata will be written.
+
+
+</td></tr>
+</tbody></table>
 **Returns:**
 
 Promise&lt;void&gt;

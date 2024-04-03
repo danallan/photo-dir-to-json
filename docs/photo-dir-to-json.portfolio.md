@@ -14,20 +14,135 @@ export declare class Portfolio
 
 ## Constructors
 
-|  Constructor | Modifiers | Description |
-|  --- | --- | --- |
-|  [(constructor)(path, opts)](./photo-dir-to-json.portfolio._constructor_.md) |  | Instantiate all subdirectories of the provided path as Albums. This processes all subdirectories except <code>opts.metadataDir</code>, if provided. |
+<table><thead><tr><th>
+
+Constructor
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[(constructor)(path, opts)](./photo-dir-to-json.portfolio._constructor_.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Instantiate all subdirectories of the provided path as Albums. This processes all subdirectories except `opts.metadataDir`<!-- -->, if provided.
+
+
+</td></tr>
+</tbody></table>
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [albums](./photo-dir-to-json.portfolio.albums.md) | <code>readonly</code> | [Album](./photo-dir-to-json.album.md)<!-- -->\[\] | List of Album instances for each subdirectory of the Portfolio path. |
-|  [path](./photo-dir-to-json.portfolio.path.md) | <code>readonly</code> | string | String path to the Portfolio directory |
+<table><thead><tr><th>
+
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[albums](./photo-dir-to-json.portfolio.albums.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+[Album](./photo-dir-to-json.album.md)<!-- -->\[\]
+
+
+</td><td>
+
+List of Album instances for each subdirectory of the Portfolio path.
+
+
+</td></tr>
+<tr><td>
+
+[path](./photo-dir-to-json.portfolio.path.md)
+
+
+</td><td>
+
+`readonly`
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+String path to the Portfolio directory
+
+
+</td></tr>
+</tbody></table>
 
 ## Methods
 
-|  Method | Modifiers | Description |
-|  --- | --- | --- |
-|  [saveAllMetadata(computePath)](./photo-dir-to-json.portfolio.saveallmetadata.md) |  | Iterate over all Albums in the portfolio and write the computed metadata for each to disk. |
+<table><thead><tr><th>
 
+Method
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[saveAllMetadata(computePath)](./photo-dir-to-json.portfolio.saveallmetadata.md)
+
+
+</td><td>
+
+
+</td><td>
+
+Iterate over all Albums in the portfolio and write the computed metadata for each to disk.
+
+
+</td></tr>
+</tbody></table>

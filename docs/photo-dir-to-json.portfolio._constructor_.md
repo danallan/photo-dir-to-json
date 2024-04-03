@@ -15,8 +15,52 @@ constructor(
 
 ## Parameters
 
-|  Parameter | Type | Description |
-|  --- | --- | --- |
-|  path | string | String path to the directory containing albums |
-|  opts | [PortfolioOptions](./photo-dir-to-json.portfoliooptions.md) | _(Optional)_ Any [AlbumOptions](./photo-dir-to-json.albumoptions.md) properties specified here will be passed to each new Album class instance. |
+<table><thead><tr><th>
 
+Parameter
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+path
+
+
+</td><td>
+
+string
+
+
+</td><td>
+
+String path to the directory containing albums
+
+
+</td></tr>
+<tr><td>
+
+opts
+
+
+</td><td>
+
+[PortfolioOptions](./photo-dir-to-json.portfoliooptions.md)
+
+
+</td><td>
+
+_(Optional)_ Any [AlbumOptions](./photo-dir-to-json.albumoptions.md) properties specified here will be passed to each new Album class instance.
+
+
+</td></tr>
+</tbody></table>

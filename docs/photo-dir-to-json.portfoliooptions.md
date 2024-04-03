@@ -15,7 +15,44 @@ export interface PortfolioOptions extends AlbumOptions
 
 ## Properties
 
-|  Property | Modifiers | Type | Description |
-|  --- | --- | --- | --- |
-|  [skipAlbumNames?](./photo-dir-to-json.portfoliooptions.skipalbumnames.md) |  | string\[\] | _(Optional)_ A list of subdirectory names inside of the Portfolio path to skip. |
+<table><thead><tr><th>
 
+Property
+
+
+</th><th>
+
+Modifiers
+
+
+</th><th>
+
+Type
+
+
+</th><th>
+
+Description
+
+
+</th></tr></thead>
+<tbody><tr><td>
+
+[skipAlbumNames?](./photo-dir-to-json.portfoliooptions.skipalbumnames.md)
+
+
+</td><td>
+
+
+</td><td>
+
+string\[\]
+
+
+</td><td>
+
+_(Optional)_ A list of subdirectory names inside of the Portfolio path to skip.
+
+
+</td></tr>
+</tbody></table>
