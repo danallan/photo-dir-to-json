@@ -1,5 +1,7 @@
 
 
+## [1.2.2](https://github.com/danallan/photo-dir-to-json/compare/1.2.1...1.2.2) (2024-10-03)
+
 ## [1.2.1](https://github.com/danallan/photo-dir-to-json/compare/1.2.0...1.2.1) (2024-04-12)
 
 ## [1.2.0](https://github.com/danallan/photo-dir-to-json/compare/1.1.0...1.2.0) (2024-03-22)

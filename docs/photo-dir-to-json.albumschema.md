@@ -11,12 +11,15 @@ Use this schema in your downstream application to easily load the JSON files, se
 **Signature:**
 
 ```typescript
-albumSchema: z.ZodObject<{
+albumSchema: z.ZodObject<z.objectUtil.extendShape<{
     title: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     thumb: z.ZodOptional<z.ZodString>;
+    slug: z.ZodOptional<z.ZodString>;
+    unlisted: z.ZodOptional<z.ZodBoolean>;
     keywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
     order: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
+}, {
     unlisted: z.ZodBoolean;
     slug: z.ZodString;
     photos: z.ZodArray<z.ZodObject<{
@@ -44,7 +47,7 @@ albumSchema: z.ZodObject<{
         id?: string | undefined;
         alt?: string | undefined;
     }>, "many">;
-}, "strict", z.ZodTypeAny, {
+}>, "strict", z.ZodTypeAny, {
     title: string;
     slug: string;
     unlisted: boolean;
