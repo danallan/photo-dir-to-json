@@ -86,10 +86,11 @@ describe('options object', () => {
             skippedExtensions: ['json', 'jpg', 'png', 'webp'],
         };
         const consoleSpy = vi.spyOn(console, 'error');
-        new Album(images, opts).photos;
+        const photos = new Album(images, opts).photos;
 
         // expect no warnings
         expect(consoleSpy).not.toBeCalled();
+        expect(photos).not.toBeNull();
 
         consoleSpy.mockRestore();
     });

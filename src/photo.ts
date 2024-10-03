@@ -194,7 +194,7 @@ export class Photo {
         let tags;
         try {
             tags = await exifreader.load(this.path, { expanded: true });
-        } catch (_) {
+        } catch {
             throw new Error(`Invalid image format: ${this.path}`);
         }
 
