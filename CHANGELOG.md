@@ -1,5 +1,10 @@
 
 
+## <small>1.2.3 (2024-12-19)</small>
+
+* chore: Upgrade dependencies ([94555d0](https://github.com/danallan/photo-dir-to-json/commit/94555d0))
+* build: Upgrade node LTS version in .tool-versions ([0d176c1](https://github.com/danallan/photo-dir-to-json/commit/0d176c1))
+
 ## [1.2.2](https://github.com/danallan/photo-dir-to-json/compare/1.2.1...1.2.2) (2024-10-03)
 
 ## [1.2.1](https://github.com/danallan/photo-dir-to-json/compare/1.2.0...1.2.1) (2024-04-12)
