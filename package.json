@@ -46,16 +46,11 @@
         "typescript-eslint": "^8.18.1",
         "vitest": "^2.1.8"
     },
-    "resolutions": {
-        "braces": "^3.0.3",
-        "rollup": "^4.22.4",
-        "vite": "^5.1.8"
-    },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "files": [
         "dist"
     ],
     "type": "module",
-    "packageManager": "yarn@4.1.1"
+    "packageManager": "yarn@4.5.3"
 }
