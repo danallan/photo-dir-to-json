@@ -228,22 +228,21 @@ for more information and more examples.
 
 ## Getting started
 
-1. Install [asdf Runtime Version Manager](https://asdf-vm.com/).
+1. Install [Mise-en-place](https://mise.jdx.dev/).
 
-2. Check your asdf install is working and that you are using the version of Node
+2. Check your mise install is working and that you are using the version of Node
    specified in [`.tool-versions`
    file](https://github.com/danallan/photo-dir-to-json/blob/main/.tool-versions)
    with:
 
     ```
-    asdf current
+    mise current
     ```
 
 3. Enable `yarn`:
 
     ```
     corepack enable
-    asdf reshim nodejs
     ```
 
 4. Install dependencies:
