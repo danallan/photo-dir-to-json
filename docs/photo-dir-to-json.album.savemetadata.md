@@ -47,6 +47,7 @@ full file path of JSON file to write
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;void&gt;

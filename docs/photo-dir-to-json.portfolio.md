@@ -146,3 +146,4 @@ Iterate over all Albums in the portfolio and write the computed metadata for eac
 
 </td></tr>
 </tbody></table>
+

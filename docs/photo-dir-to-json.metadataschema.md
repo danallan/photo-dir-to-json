@@ -15,25 +15,9 @@ metadataSchema: z.ZodObject<{
     thumb: z.ZodOptional<z.ZodString>;
     slug: z.ZodOptional<z.ZodString>;
     unlisted: z.ZodOptional<z.ZodBoolean>;
-    keywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    order: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-}, "strict", z.ZodTypeAny, {
-    title: string;
-    description?: string | undefined;
-    thumb?: string | undefined;
-    slug?: string | undefined;
-    unlisted?: boolean | undefined;
-    keywords?: string[] | undefined;
-    order?: string[] | undefined;
-}, {
-    title: string;
-    description?: string | undefined;
-    thumb?: string | undefined;
-    slug?: string | undefined;
-    unlisted?: boolean | undefined;
-    keywords?: string[] | undefined;
-    order?: string[] | undefined;
-}>
+    keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    order: z.ZodOptional<z.ZodArray<z.ZodString>>;
+}, z.core.$strict>
 ```
 
 ## Remarks

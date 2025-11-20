@@ -146,3 +146,4 @@ Asynchronously compute the [photoSchema](./photo-dir-to-json.photoschema.md) met
 
 </td></tr>
 </tbody></table>
+

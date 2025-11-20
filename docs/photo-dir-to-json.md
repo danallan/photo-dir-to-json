@@ -196,3 +196,4 @@ A TypeScript type of [photoSchema](./photo-dir-to-json.photoschema.md)<!-- -->.
 
 </td></tr>
 </tbody></table>
+

@@ -112,3 +112,4 @@ _(Optional)_ Suppress warnings for files that are skipped in the album with thes
 
 </td></tr>
 </tbody></table>
+

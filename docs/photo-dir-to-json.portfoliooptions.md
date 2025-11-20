@@ -56,3 +56,4 @@ _(Optional)_ A list of subdirectory names inside of the Portfolio path to skip.
 
 </td></tr>
 </tbody></table>
+

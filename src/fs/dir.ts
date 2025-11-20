@@ -28,7 +28,7 @@ export class Directory {
             this._subdirs = this.contents()
                 .filter((f) => f.isDirectory())
                 .filter((f) => !except.includes(f.name))
-                .map((f) => pathJoin(f.path, f.name))
+                .map((f) => pathJoin(f.parentPath, f.name))
                 .map((p) => new Directory(p));
         }
         return this._subdirs;

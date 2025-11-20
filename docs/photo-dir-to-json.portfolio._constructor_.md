@@ -64,3 +64,4 @@ _(Optional)_ Any [AlbumOptions](./photo-dir-to-json.albumoptions.md) properties 
 
 </td></tr>
 </tbody></table>
+

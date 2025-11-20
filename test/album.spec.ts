@@ -116,7 +116,7 @@ describe('metadata', () => {
         const opts = { metadataFile: '_metadata-missing_title.json' };
         expect(() => {
             new Album(albumdir, opts);
-        }).toThrow(/Required/);
+        }).toThrow(/Invalid input: expected string, received undefined/);
     });
 
     test('throws error when thumb specified but file not found', ({ expect }) => {

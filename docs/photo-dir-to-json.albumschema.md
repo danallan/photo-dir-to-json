@@ -11,15 +11,12 @@ Use this schema in your downstream application to easily load the JSON files, se
 **Signature:**
 
 ```typescript
-albumSchema: z.ZodObject<z.objectUtil.extendShape<{
+albumSchema: z.ZodObject<{
     title: z.ZodString;
     description: z.ZodOptional<z.ZodString>;
     thumb: z.ZodOptional<z.ZodString>;
-    slug: z.ZodOptional<z.ZodString>;
-    unlisted: z.ZodOptional<z.ZodBoolean>;
-    keywords: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-    order: z.ZodOptional<z.ZodArray<z.ZodString, "many">>;
-}, {
+    keywords: z.ZodOptional<z.ZodArray<z.ZodString>>;
+    order: z.ZodOptional<z.ZodArray<z.ZodString>>;
     unlisted: z.ZodBoolean;
     slug: z.ZodString;
     photos: z.ZodArray<z.ZodObject<{
@@ -30,58 +27,8 @@ albumSchema: z.ZodObject<z.objectUtil.extendShape<{
         height: z.ZodNumber;
         id: z.ZodOptional<z.ZodString>;
         alt: z.ZodOptional<z.ZodString>;
-    }, "strict", z.ZodTypeAny, {
-        filename: string;
-        date: string;
-        landscape: boolean;
-        width: number;
-        height: number;
-        id?: string | undefined;
-        alt?: string | undefined;
-    }, {
-        filename: string;
-        date: string;
-        landscape: boolean;
-        width: number;
-        height: number;
-        id?: string | undefined;
-        alt?: string | undefined;
-    }>, "many">;
-}>, "strict", z.ZodTypeAny, {
-    title: string;
-    slug: string;
-    unlisted: boolean;
-    photos: {
-        filename: string;
-        date: string;
-        landscape: boolean;
-        width: number;
-        height: number;
-        id?: string | undefined;
-        alt?: string | undefined;
-    }[];
-    description?: string | undefined;
-    thumb?: string | undefined;
-    keywords?: string[] | undefined;
-    order?: string[] | undefined;
-}, {
-    title: string;
-    slug: string;
-    unlisted: boolean;
-    photos: {
-        filename: string;
-        date: string;
-        landscape: boolean;
-        width: number;
-        height: number;
-        id?: string | undefined;
-        alt?: string | undefined;
-    }[];
-    description?: string | undefined;
-    thumb?: string | undefined;
-    keywords?: string[] | undefined;
-    order?: string[] | undefined;
-}>
+    }, z.core.$strict>>;
+}, z.core.$strict>
 ```
 
 ## Remarks

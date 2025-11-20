@@ -47,6 +47,7 @@ a function that accepts an Album parameter and returns the full path where the a
 
 </td></tr>
 </tbody></table>
+
 **Returns:**
 
 Promise&lt;void&gt;

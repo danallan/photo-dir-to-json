@@ -21,23 +21,7 @@ photoSchema: z.ZodObject<{
     height: z.ZodNumber;
     id: z.ZodOptional<z.ZodString>;
     alt: z.ZodOptional<z.ZodString>;
-}, "strict", z.ZodTypeAny, {
-    filename: string;
-    date: string;
-    landscape: boolean;
-    width: number;
-    height: number;
-    id?: string | undefined;
-    alt?: string | undefined;
-}, {
-    filename: string;
-    date: string;
-    landscape: boolean;
-    width: number;
-    height: number;
-    id?: string | undefined;
-    alt?: string | undefined;
-}>
+}, z.core.$strict>
 ```
 
 ## Example
