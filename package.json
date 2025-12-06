@@ -37,7 +37,6 @@
         "@vitest/coverage-v8": "^4.0.12",
         "eslint": "^9.39.1",
         "eslint-config-prettier": "^10.1.8",
-        "esrun": "^3.2.30",
         "husky": "^9.1.7",
         "pinst": "^3.0.0",
         "prettier": "3.6.2",
