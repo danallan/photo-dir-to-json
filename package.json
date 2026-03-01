@@ -22,28 +22,28 @@
     },
     "dependencies": {
         "date-fns": "^4.1.0",
-        "exifreader": "^4.32.0",
-        "zod": "^4.1.12"
+        "exifreader": "^4.36.2",
+        "zod": "^4.3.6"
     },
     "devDependencies": {
-        "@commitlint/cli": "^20.1.0",
-        "@commitlint/config-conventional": "^20.0.0",
-        "@microsoft/api-documenter": "^7.28.0",
-        "@microsoft/api-extractor": "^7.55.0",
-        "@release-it/conventional-changelog": "^10.0.2",
-        "@tsconfig/node20": "^20.1.8",
+        "@commitlint/cli": "^20.4.2",
+        "@commitlint/config-conventional": "^20.4.2",
+        "@microsoft/api-documenter": "^7.29.6",
+        "@microsoft/api-extractor": "^7.57.6",
+        "@release-it/conventional-changelog": "^10.0.5",
+        "@tsconfig/node20": "^20.1.9",
         "@types/eslint": "^9.6.1",
-        "@types/node": "^24.10.1",
-        "@vitest/coverage-v8": "^4.0.12",
-        "eslint": "^9.39.1",
+        "@types/node": "^24.11.0",
+        "@vitest/coverage-v8": "^4.0.18",
+        "eslint": "^9.39.3",
         "eslint-config-prettier": "^10.1.8",
         "husky": "^9.1.7",
         "pinst": "^3.0.0",
-        "prettier": "3.6.2",
-        "release-it": "^19.0.6",
+        "prettier": "3.8.1",
+        "release-it": "^19.2.4",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.47.0",
-        "vitest": "^4.0.12"
+        "typescript-eslint": "^8.56.1",
+        "vitest": "^4.0.18"
     },
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
@@ -51,7 +51,7 @@
         "dist"
     ],
     "type": "module",
-    "packageManager": "yarn@4.5.3",
+    "packageManager": "yarn@4.12.0",
     "resolutions": {
         "conventional-changelog-conventionalcommits": "9.1.0"
     }
