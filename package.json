@@ -51,7 +51,7 @@
         "dist"
     ],
     "type": "module",
-    "packageManager": "yarn@4.12.0",
+    "packageManager": "yarn@4.13.0",
     "resolutions": {
         "conventional-changelog-conventionalcommits": "9.1.0"
     }
