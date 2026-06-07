@@ -1,5 +1,7 @@
 # Changelog
 
+## [1.2.8](https://github.com/danallan/photo-dir-to-json/compare/1.2.7...1.2.8) (2026-06-07)
+
 ## [1.2.7](https://github.com/danallan/photo-dir-to-json/compare/1.2.6...1.2.7) (2026-03-29)
 
 ## [1.2.6](https://github.com/danallan/photo-dir-to-json/compare/1.2.5...1.2.6) (2026-03-15)
