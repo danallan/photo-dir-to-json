@@ -22,7 +22,7 @@
     },
     "dependencies": {
         "date-fns": "^4.4.0",
-        "exifreader": "^4.41.3",
+        "exifreader": "^4.42.0",
         "zod": "^4.4.3"
     },
     "devDependencies": {
@@ -30,7 +30,7 @@
         "@commitlint/config-conventional": "^21.2.0",
         "@microsoft/api-documenter": "^7.30.10",
         "@microsoft/api-extractor": "^7.58.12",
-        "@release-it/conventional-changelog": "^11.0.1",
+        "@release-it/conventional-changelog": "^12.0.0",
         "@tsconfig/node20": "^20.1.9",
         "@types/eslint": "^9.6.1",
         "@types/node": "^24.13.3",
@@ -40,9 +40,9 @@
         "husky": "^9.1.7",
         "pinst": "^3.0.0",
         "prettier": "3.9.6",
-        "release-it": "^20.2.1",
+        "release-it": "^21.0.2",
         "typescript": "^5.9.3",
-        "typescript-eslint": "^8.65.0",
+        "typescript-eslint": "^8.66.0",
         "vitest": "^4.1.10"
     },
     "main": "dist/index.js",
