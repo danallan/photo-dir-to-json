@@ -26,8 +26,9 @@
         "zod": "^4.4.3"
     },
     "devDependencies": {
-        "@commitlint/cli": "^20.5.3",
+        "@commitlint/cli": "^21.2.1",
         "@commitlint/config-conventional": "^21.2.0",
+        "@eslint/js": "^10.0.1",
         "@microsoft/api-documenter": "^7.30.10",
         "@microsoft/api-extractor": "^7.58.12",
         "@release-it/conventional-changelog": "^12.0.0",
@@ -35,7 +36,7 @@
         "@types/eslint": "^9.6.1",
         "@types/node": "^24.13.3",
         "@vitest/coverage-v8": "^4.1.10",
-        "eslint": "^9.39.5",
+        "eslint": "^10.8.1",
         "eslint-config-prettier": "^10.1.8",
         "husky": "^9.1.7",
         "pinst": "^3.0.0",
@@ -51,7 +52,7 @@
         "dist"
     ],
     "type": "module",
-    "packageManager": "yarn@4.16.0",
+    "packageManager": "yarn@4.18.0",
     "resolutions": {
         "conventional-changelog-conventionalcommits": "9.1.0"
     }
